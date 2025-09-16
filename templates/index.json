@@ -116,12 +116,32 @@
         "title": "Premium Hair Care Brands",
         "subtitle": "Handpicked for quality and performance, our curated selection of hair care brands offers innovative solutions for your hair needs. Trust in excellence."
       }
+    },
+    "featured_blog_hUNebw": {
+      "type": "featured-blog",
+      "disabled": true,
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "news",
+        "post_limit": 3,
+        "heading": "From The blog",
+        "heading_size": "h0",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "hero_slider_n4bWwT",
     "collections_drop_produts_xa4j9N",
     "image_promotionollection_NctBNQ",
-    "icons_rich_text_UaWckG"
+    "icons_rich_text_UaWckG",
+    "featured_blog_hUNebw"
   ]
 }
