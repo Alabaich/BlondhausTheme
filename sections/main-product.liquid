@@ -356,7 +356,9 @@
 
     function openFullscreen() {
       const currentMainImageUrl = mainImage.src;
-      currentIndex = allImages.findIndex((url) => url === currentMainImageUrl);
+
+      currentIndex = allImages.findIndex((url) => currentMainImageUrl.includes(url));
+
       if (currentIndex === -1) currentIndex = 0;
 
       fullscreenImage.src = allImages[currentIndex];

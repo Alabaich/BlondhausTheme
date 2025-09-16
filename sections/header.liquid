@@ -609,9 +609,7 @@
       const menuDrawer = document.querySelector('.menu-drawer-container');
       const closeButton = document.querySelector('.menu-drawer__close');
 
-      // Mobile menu functionality
       if (menuDrawer) {
-        // Close menu when clicking on backdrop
         const backdrop = menuDrawer.querySelector('.menu-drawer-backdrop');
         if (backdrop) {
           backdrop.addEventListener('click', function () {
@@ -619,7 +617,6 @@
           });
         }
 
-        // Close menu when clicking close button
         if (closeButton) {
           closeButton.addEventListener('click', function (e) {
             e.preventDefault();
@@ -628,7 +625,6 @@
           });
         }
 
-        // Submenu toggle functionality
         const menuItemsWithSubmenu = menuDrawer.querySelectorAll('li.has-submenu > a');
         menuItemsWithSubmenu.forEach((item) => {
           item.addEventListener('click', function (e) {
@@ -640,7 +636,6 @@
               this.setAttribute('aria-expanded', !isExpanded);
               parentLi.toggleAttribute('open');
 
-              // Close other open submenus
               menuItemsWithSubmenu.forEach((otherItem) => {
                 if (otherItem !== this) {
                   otherItem.setAttribute('aria-expanded', 'false');
