@@ -15,9 +15,25 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "image_with_text_overlay_RUUzLd": {
+      "type": "image-with-text-overlay",
+      "disabled": true,
+      "name": "Image with text (overlay)",
+      "settings": {
+        "section_size": "large",
+        "image": "shopify://shop_images/AboutUsmainImage.webp",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 10,
+        "subheading": "",
+        "title": "Tell your story",
+        "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_with_text_overlay_RUUzLd"
   ]
 }
