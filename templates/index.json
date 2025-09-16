@@ -12,10 +12,23 @@
     "hero_slider_n4bWwT": {
       "type": "heroSlider",
       "blocks": {
+        "slide_fTjQPA": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/5e24e255cc1f4019b5a159be41666e1f.mp4",
+            "uppertitle": "Oribe",
+            "title": "Experience the Gold Standard: Oribe is Now Available",
+            "button_url": "shopify://collections/oribe",
+            "button_text": "Go To Collection"
+          }
+        },
         "slide_6EDPUL": {
           "type": "slide",
           "settings": {
+            "media_type": "image",
             "slide_image": "shopify://shop_images/SpringSets_HPMain_Both_Desktop.webp",
+            "video_url": "",
             "uppertitle": "Oribe",
             "title": "Experience the Gold Standard: Oribe is Now Available",
             "button_url": "shopify://collections/oribe",
@@ -24,6 +37,7 @@
         }
       },
       "block_order": [
+        "slide_fTjQPA",
         "slide_6EDPUL"
       ],
       "name": "Hero Slider",
