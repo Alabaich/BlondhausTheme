@@ -18,7 +18,6 @@
     },
     "image_with_text_overlay_RUUzLd": {
       "type": "image-with-text-overlay",
-      "disabled": true,
       "name": "Image with text (overlay)",
       "settings": {
         "section_size": "large",
@@ -30,10 +29,25 @@
         "title": "Tell your story",
         "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
       }
+    },
+    "image_with_text_overlay_bHhXB7": {
+      "type": "image-with-text-overlay",
+      "disabled": true,
+      "name": "Image with text (overlay)",
+      "settings": {
+        "section_size": "large",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "subheading": "",
+        "title": "Tell your story",
+        "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+      }
     }
   },
   "order": [
     "main",
-    "image_with_text_overlay_RUUzLd"
+    "image_with_text_overlay_RUUzLd",
+    "image_with_text_overlay_bHhXB7"
   ]
 }
