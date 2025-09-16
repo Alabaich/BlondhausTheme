@@ -21,7 +21,6 @@
       "type": "image-with-text-overlay",
       "name": "Image with text (overlay)",
       "settings": {
-        "section_size": "large",
         "image": "shopify://shop_images/AboutUsmainImage.webp",
         "text_color": "#ffffff",
         "overlay_color": "#000000",
@@ -31,24 +30,37 @@
         "content": ""
       }
     },
-    "image_with_text_overlay_bHhXB7": {
-      "type": "image-with-text-overlay",
-      "disabled": true,
-      "name": "Image with text (overlay)",
+    "switch_side_image_TGcxad": {
+      "type": "switchSideImage",
+      "name": "Switch Side Image Section",
       "settings": {
-        "section_size": "large",
-        "text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 30,
-        "subheading": "",
-        "title": "Tell your story",
-        "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+        "image_position": "right",
+        "image": "shopify://shop_images/abousUsswitchSideImage.webp",
+        "text_align": "right",
+        "heading": "By Blond Lovers, for Blond Lovers",
+        "subtitle": "Our mission is to deliver the best hair care for bleached hair and expert blonde coloring services that protect, nurture, and celebrate your unique style. Our innovative range of blonde hair care products is thoughtfully crafted to rejuvenate and illuminate every strand, ensuring your locks remain as vibrant as your spirit. Because blondes deserve the best. And at Blondhaus, we make sure they get it.",
+        "description": "",
+        "bottom_text": ""
+      }
+    },
+    "switch_side_image_mMiRFE": {
+      "type": "switchSideImage",
+      "name": "Switch Side Image Section",
+      "settings": {
+        "image_position": "left",
+        "image": "shopify://shop_images/image_2_1x_f7a2a87a-bd0d-4ed2-b1a6-921a69b650a3.webp",
+        "text_align": "left",
+        "heading": "The Blondhaus Experience",
+        "subtitle": "At Blondhaus, expertise meets passion to create flawless, luminous color while keeping hair strong and healthy. Our thoughtfully designed hair care routine makes it easy to maintain vibrant, nourished hair you’ll love—no matter your hair type or texture. Every Blondhaus transformation is crafted to enhance your natural beauty while preserving the integrity of your hair.",
+        "description": "",
+        "bottom_text": ""
       }
     }
   },
   "order": [
     "main",
     "image_with_text_overlay_RUUzLd",
-    "image_with_text_overlay_bHhXB7"
+    "switch_side_image_TGcxad",
+    "switch_side_image_mMiRFE"
   ]
 }
