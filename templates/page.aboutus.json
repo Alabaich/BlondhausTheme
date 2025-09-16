@@ -55,12 +55,26 @@
         "description": "",
         "bottom_text": ""
       }
+    },
+    "image_with_text_dQ3HKK": {
+      "type": "imageWithText",
+      "name": "Image With Text",
+      "settings": {
+        "imageForBg": "shopify://shop_images/aboutUsImage2.webp",
+        "subtitle": "",
+        "title": "",
+        "description": "<p>“OUR AIM IS TO OFFER YOU WELL-THOUGHT-OUT, HIGH-QUALITY HAIR CARE PRODUCTS AT A FAIR PRICE, ALL YEAR ROUND.”</p>",
+        "linkForButton": "",
+        "textForButton": "Click Here",
+        "enableBackground": false
+      }
     }
   },
   "order": [
     "main",
     "image_with_text_overlay_RUUzLd",
     "switch_side_image_TGcxad",
-    "switch_side_image_mMiRFE"
+    "switch_side_image_mMiRFE",
+    "image_with_text_dQ3HKK"
   ]
 }
