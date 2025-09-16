@@ -226,6 +226,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
+    padding-right: 10px;
     cursor: pointer;
     font-weight: bold;
   }
@@ -289,16 +290,16 @@
 
     <div class="product-details-container">
       <div class="product-details">
-        <h1 class="product-title">{{ product.title }}</h1>
+        <h1 class="product-title smallTitle">{{ product.title }}</h1>
         <div class="product-price-and-rating">
           <div class="product-price">
-            <span class="price-display">{{ product.price | money }}</span>
+            <span class="price-display lightSmallTitle">{{ product.price | money }}</span>
           </div>
         </div>
       </div>
       <div class="divider"></div>
 
-      <div class="product-description">
+      <div class="product-description regularText">
         {{ short_description }}
         {% if is_long_description %}
           <div class="read-more-link" data-target="description-content">Read more</div>
