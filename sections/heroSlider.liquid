@@ -56,23 +56,12 @@
     cursor: pointer;
     text-decoration: none;
     width: fit-content;
+    transition: all 0.3s ease;
   }
 
   .hero-slider-button:hover {
     background: #2c2d2c !important;
     color: #fff !important;
-  }
-
-  .hero-slider-button::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: 0;
-    height: calc(100% + 4px);
-    background-color: #2c2d2c;
-    transition: all 0.4s ease;
-    z-index: -1;
   }
 
   .splide__slide {
@@ -81,11 +70,22 @@
     width: 100vw !important;
   }
 
-  .splide__slide img {
+  .splide__slide img,
+  .splide__slide video {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
     display: block;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
   }
 
   .splide {
@@ -106,6 +106,26 @@
     height: 100vh;
     display: flex;
   }
+
+  @media screen and (max-width: 768px) {
+    .hero-slide-content {
+      padding: 15px 20px;
+      gap: 15px;
+      width: 80%;
+    }
+
+    .hero-slider-uppertitle {
+      font-size: 18px;
+    }
+
+    .hero-slider-title {
+      font-size: 28px;
+    }
+
+    .hero-slider-button {
+      padding: 12px 24px !important;
+    }
+  }
 </style>
 
 <div class="hero-slider-section">
@@ -114,17 +134,33 @@
       <ul class="splide__list">
         {% for block in section.blocks %}
           <li class="splide__slide">
-            {% if block.settings.slide_image != blank %}
-              <img
-                src="{{ block.settings.slide_image | img_url: '1920x' }}"
-                alt="{{ block.settings.slide_image.alt | escape }}"
-                loading="lazy"
-                width="100vw"
-                height="100vh"
+            {% if block.settings.media_type == 'image' %}
+              {% if block.settings.slide_image != blank %}
+                <img
+                  src="{{ block.settings.slide_image | img_url: '1920x' }}"
+                  alt="{{ block.settings.slide_image.alt | escape }}"
+                  loading="lazy"
+                  width="100vw"
+                  height="100vh"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+              {% endif %}
+            {% elsif block.settings.media_type == 'video' and block.settings.video_url != blank %}
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                width="100%"
+                height="100%"
               >
-            {% else %}
-              {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             {% endif %}
+
+            <div class="video-overlay"></div>
 
             <div class="hero-slide-content">
               {% if block.settings.uppertitle != blank %}
@@ -148,7 +184,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    new Splide('.splide', {
+    // Инициализация слайдера
+    const splide = new Splide('.splide', {
       type: 'loop',
       perPage: 1,
       autoplay: true,
@@ -160,6 +197,19 @@
       width: '100vw',
       height: '100vh',
     }).mount();
+
+    splide.on('move', function () {
+      const activeSlide = splide.Components.Slides.getAt(splide.index);
+      const video = activeSlide.slide.querySelector('video');
+
+      document.querySelectorAll('.splide__slide video').forEach((v) => {
+        if (v !== video) v.pause();
+      });
+
+      if (video) {
+        video.play().catch((e) => console.log('Автовоспроизведение видео предотвращено:', e));
+      }
+    });
   });
 </script>
 
@@ -175,9 +225,32 @@
       "name": "Slide",
       "settings": [
         {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
           "type": "image_picker",
           "id": "slide_image",
-          "label": "Slide Image"
+          "label": "Slide Image",
+          "info": "Choose an image to display on the slide."
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Choose a video to display on the slide.",
         },
         {
           "type": "text",
