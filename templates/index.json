@@ -12,10 +12,23 @@
     "hero_slider_n4bWwT": {
       "type": "heroSlider",
       "blocks": {
+        "slide_fTjQPA": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/5e24e255cc1f4019b5a159be41666e1f.mp4",
+            "uppertitle": "Oribe",
+            "title": "Experience the Gold Standard: Oribe is Now Available",
+            "button_url": "shopify://collections/oribe",
+            "button_text": "Go To Collection"
+          }
+        },
         "slide_6EDPUL": {
           "type": "slide",
           "settings": {
+            "media_type": "image",
             "slide_image": "shopify://shop_images/SpringSets_HPMain_Both_Desktop.webp",
+            "video_url": "",
             "uppertitle": "Oribe",
             "title": "Experience the Gold Standard: Oribe is Now Available",
             "button_url": "shopify://collections/oribe",
@@ -24,6 +37,7 @@
         }
       },
       "block_order": [
+        "slide_fTjQPA",
         "slide_6EDPUL"
       ],
       "name": "Hero Slider",
@@ -102,12 +116,31 @@
         "title": "Premium Hair Care Brands",
         "subtitle": "Handpicked for quality and performance, our curated selection of hair care brands offers innovative solutions for your hair needs. Trust in excellence."
       }
+    },
+    "featured_blog_hUNebw": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "news",
+        "post_limit": 3,
+        "heading": "From The blog",
+        "heading_size": "h0",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "hero_slider_n4bWwT",
     "collections_drop_produts_xa4j9N",
     "image_promotionollection_NctBNQ",
-    "icons_rich_text_UaWckG"
+    "icons_rich_text_UaWckG",
+    "featured_blog_hUNebw"
   ]
 }
