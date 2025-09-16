@@ -4024,3 +4024,11 @@ a.link {
   text-decoration: underline;
   font-size: 1.125rem;
 }
+
+body.dark-theme:not(.has-hero-slider) .header__heading-logo {
+  filter: brightness(0) invert(1) !important;
+}
+
+body:not(.dark-theme):not(.has-hero-slider) .header__heading-logo {
+  filter: none !important;
+}
