@@ -231,6 +231,7 @@
       "block_order": [
         "comment_QWaq6K"
       ],
+      "disabled": true,
       "name": "Comments Slider",
       "settings": {
         "title": "What our customers say",
