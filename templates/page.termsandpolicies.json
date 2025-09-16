@@ -11,13 +11,23 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "terms_and_policies_mXH6rL": {
+      "type": "termsAndPolicies",
+      "name": "Terms And Policies",
+      "settings": {
+        "title": "Terms & Policies: Your Guide to a Seamless Experience",
+        "description": "<p>Welcome to our Terms & Policies page, your comprehensive guide to understanding the rules and regulations that govern your interactions with our site. We believe in transparency and want to ensure that you have all the information you need to navigate our platform confidently. Below, you'll find an overview of our terms and policies, designed to protect your rights and provide clarity on how we operate.  </p><p></p><p>1. Terms of Service: Our Terms of Service outline the terms and conditions that apply to your use of our website. By accessing or using our site, you agree to abide by these terms, which cover aspects such as user conduct, account registration, intellectual property rights, and limitations of liability. Please read this section carefully to understand your rights and obligations while using our platform.  </p><p>1.2. Privacy Policy:Protecting your privacy is paramount to us. Our Privacy Policy explains how we collect, use, and disclose your personal information when you interact with our site. We are committed to maintaining the confidentiality and security of your data, and this policy details our practices regarding data collection, cookies, third-party services, and your rights regarding your personal information.</p><p>1.3. Shipping & Delivery: We strive to provide you with a seamless shopping experience, and our Shipping & Delivery policy outlines the terms and conditions related to the shipment of products purchased from our site. This includes information on shipping methods, delivery times, shipping costs, and international shipping policies. We aim to ensure that your orders reach you in a timely and efficient manner.</p><p>1.4. Returns & Refunds: We want you to be completely satisfied with your purchase. Our Returns & Refunds policy explains the procedures for returning products, requesting refunds, and resolving issues related to defective or damaged items. We outline the conditions under which returns are accepted, as well as any applicable restocking fees or return shipping costs.1.5 .Terms of Use for Reviews & Comments: We value your feedback and encourage you to share your thoughts and experiences with our products and services. However, it's essential to adhere to our Terms of Use for Reviews & Comments, which govern the submission of user-generated content on our site. This section outlines guidelines for posting reviews, comments, and other user-generated content, as well as our rights to moderate or remove inappropriate content. </p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "terms_and_policies_mXH6rL"
   ]
 }
