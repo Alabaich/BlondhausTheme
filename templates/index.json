@@ -48,10 +48,20 @@
         "upperTitle": "",
         "subtitle": ""
       }
+    },
+    "image_promotionollection_NctBNQ": {
+      "type": "imagePromotionollection",
+      "name": "Image Prom Collection",
+      "settings": {
+        "image": "shopify://shop_images/474603261_9114647558621438_4388171250273051312_n_1_8ca522d4-fec3-4446-a944-f9db7c631d63.webp",
+        "text": "Professional haircare at home",
+        "collection": "blondifier"
+      }
     }
   },
   "order": [
     "hero_slider_n4bWwT",
-    "collections_drop_produts_xa4j9N"
+    "collections_drop_produts_xa4j9N",
+    "image_promotionollection_NctBNQ"
   ]
 }
