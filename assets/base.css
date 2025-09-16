@@ -3766,14 +3766,23 @@ body {
   background: #eaeaea;
 }
 
+body.dark-theme.has-hero-slider .buttonPrimary {
+  color: #2c2d2c !important;
+}
+
+body.dark-theme .selectedBrands .brandsContainer .oneBlock {
+  background: #eaeaea;
+  padding: 15px;
+  border-radius: 15px;
+}
+
 body.dark-theme .buttonPrimary {
   position: relative;
   overflow: hidden;
   width: fit-content;
   background-color: #fff;
-  color: #fff;
+  /* color: #fff; */
   display: flex;
-  padding: 10px 25px;
   justify-content: center;
   align-items: center;
   gap: 10px;
