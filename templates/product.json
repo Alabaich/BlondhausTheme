@@ -133,6 +133,14 @@
         "upperTitle": "",
         "subtitle": ""
       }
+    },
+    "instagram_feed_7VQiND": {
+      "type": "instagramFeed",
+      "name": "Instagram Feed",
+      "settings": {
+        "subheading": "Follow us",
+        "title": "Our Gallery"
+      }
     }
   },
   "order": [
@@ -140,6 +148,7 @@
     "image-with-text",
     "multicolumn",
     "related-products",
-    "collections_drop_produts_KACtFT"
+    "collections_drop_produts_KACtFT",
+    "instagram_feed_7VQiND"
   ]
 }
