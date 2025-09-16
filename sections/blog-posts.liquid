@@ -76,7 +76,7 @@
 
               {%- unless article == empty -%}
                 <div class="Grid__Cell 1/2--tablet 1/3--lap-and-up {% if forloop.index == 3 %}hidden-tablet{% endif %}">
-                  {%- include 'article-item', article: article -%}
+                  {%- include 'article-card', article: article -%}
                 </div>
 
                 {%- assign show_placeholders = false -%}
@@ -87,7 +87,7 @@
             {%- assign blog = blogs[block.settings.blog] -%}
             {%- for article in blog.articles limit: 3 -%}
               <div class="Grid__Cell 1/2--tablet 1/3--lap-and-up {% if forloop.index == 3 %}hidden-tablet{% endif %}">
-                {%- include 'article-item', article: article -%}
+                {%- include 'article-card', article: article -%}
               </div>
 
               {%- assign show_placeholders = false -%}
