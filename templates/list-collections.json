@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -5,11 +14,77 @@
       "settings": {
         "title": "Collections",
         "sort": "alphabetical",
-        "image_ratio": "square"
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "columns_mobile": "2"
+      }
+    },
+    "collection_list_L8BQXR": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_yBPM93": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_tbNVw8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_84NHYG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_yBPM93",
+        "featured_collection_tbNVw8",
+        "featured_collection_84NHYG"
+      ],
+      "disabled": true,
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_XqC3wA": {
+      "type": "collectionList",
+      "blocks": {
+        "category_collection_7VUGyM": {
+          "type": "category_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_collection_7VUGyM"
+      ],
+      "disabled": true,
+      "name": "Collection List",
+      "settings": {
+        "title_label": "DISCOVER OUR",
+        "title": "COLLECTIONS"
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "collection_list_L8BQXR",
+    "collection_list_XqC3wA"
   ]
 }

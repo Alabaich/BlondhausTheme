@@ -11,6 +11,7 @@
   "sections": {
     "cart-items": {
       "type": "main-cart-items",
+      "custom_css": [],
       "settings": {}
     },
     "cart-footer": {
