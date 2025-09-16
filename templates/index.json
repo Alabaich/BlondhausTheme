@@ -135,28 +135,6 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "blog_posts_V3tV7q": {
-      "type": "blog-posts",
-      "blocks": {
-        "blog_MJ67Hm": {
-          "type": "blog",
-          "settings": {
-            "blog": "news"
-          }
-        }
-      },
-      "block_order": [
-        "blog_MJ67Hm"
-      ],
-      "name": "Blog posts",
-      "settings": {
-        "subheading": "",
-        "title": "Blog posts",
-        "show_category": false,
-        "button_link": "shopify://blogs/news",
-        "button_text": "View all articles"
-      }
     }
   },
   "order": [
@@ -164,7 +142,6 @@
     "collections_drop_produts_xa4j9N",
     "image_promotionollection_NctBNQ",
     "icons_rich_text_UaWckG",
-    "featured_blog_hUNebw",
-    "blog_posts_V3tV7q"
+    "featured_blog_hUNebw"
   ]
 }
