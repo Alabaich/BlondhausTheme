@@ -28,9 +28,30 @@
       ],
       "name": "Hero Slider",
       "settings": {}
+    },
+    "collections_drop_produts_xa4j9N": {
+      "type": "collectionsDropProduts",
+      "blocks": {
+        "collection_HxgmVt": {
+          "type": "collection",
+          "settings": {
+            "collection": "loreal-professionnel"
+          }
+        }
+      },
+      "block_order": [
+        "collection_HxgmVt"
+      ],
+      "name": "Products Display Section",
+      "settings": {
+        "title": "Our Bestsellers",
+        "upperTitle": "",
+        "subtitle": ""
+      }
     }
   },
   "order": [
-    "hero_slider_n4bWwT"
+    "hero_slider_n4bWwT",
+    "collections_drop_produts_xa4j9N"
   ]
 }
