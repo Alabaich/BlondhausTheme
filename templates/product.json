@@ -113,12 +113,33 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "collections_drop_produts_KACtFT": {
+      "type": "collectionsDropProduts",
+      "blocks": {
+        "collection_e3pNUe": {
+          "type": "collection",
+          "settings": {
+            "collection": "blondifier"
+          }
+        }
+      },
+      "block_order": [
+        "collection_e3pNUe"
+      ],
+      "name": "Products Display Section",
+      "settings": {
+        "title": "YOU MAY ALSO LIKE",
+        "upperTitle": "",
+        "subtitle": ""
+      }
     }
   },
   "order": [
     "main",
     "image-with-text",
     "multicolumn",
-    "related-products"
+    "related-products",
+    "collections_drop_produts_KACtFT"
   ]
 }
