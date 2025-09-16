@@ -1,0 +1,257 @@
+<!-- custom-section.liquid -->
+<section class="timerSection" style="background-image: url({{ section.settings.imageForBg | img_url: 'master' }});">
+  <div class="container">
+    <div class="row">
+      <div class="col-left">
+        {% if section.settings.subtitle %}
+          <p class="subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+        {% if section.settings.title %}
+          <h2 class="title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.description %}
+          <div class="description">{{ section.settings.description }}</div>
+        {% endif %}
+        {% if section.settings.linkForButton and section.settings.textForButton %}
+          <a href="{{ section.settings.linkForButton }}" class="button"> {{ section.settings.textForButton }} </a>
+        {% endif %}
+      </div>
+      <div class="col-right">
+        <div class="countdown-timer" id="countdown">
+          <div class="time">
+            <div class="days"></div>
+            <p>Days</p>
+          </div>
+          <div class="time">
+            <div class="hours"></div>
+            <p>Hours</p>
+          </div>
+          <div class="time">
+            <div class="minutes"></div>
+            <p>Mins</p>
+          </div>
+          <div class="time">
+            <div class="sec"></div>
+            <p>Sec</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // JavaScript for Countdown Timer let countdownDate = new Date('{{ section.settings.dateForTimer }}').getTime(); let countdownFunction = setInterval(function () { let now = new Date().getTime(); let distance = countdownDate - now; let daysD = document.querySelector('.days'); let hoursD = document.querySelector('.hours'); let minsD = document.querySelector('.minutes'); let secD = document.querySelector('.sec'); if (!isNaN(countdownDate)) { let days = Math.floor(distance / (1000 * 60 * 60 * 24)); let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); let seconds = Math.floor((distance % (1000 * 60)) / 1000); daysD.innerHTML = days; hoursD.innerHTML = hours; minsD.innerHTML = minutes; secD.innerHTML = seconds; if (distance < 0) { clearInterval(countdownFunction); document.getElementById('countdown').innerHTML = 'EXPIRED'; } } else { document.getElementById('countdown').style.display = 'none'; } }, 1000);
+  // JavaScript for Countdown Timer
+  let countdownDate = new Date('{{ section.settings.dateForTimer }}').getTime();
+  let countdownFunction = setInterval(function () {
+    let now = new Date().getTime();
+    let distance = countdownDate - now;
+
+    let daysD = document.querySelector('.days');
+    let hoursD = document.querySelector('.hours');
+    let minsD = document.querySelector('.minutes');
+    let secD = document.querySelector('.sec');
+
+    if (!isNaN(countdownDate)) {
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysD.innerHTML = days;
+      hoursD.innerHTML = hours;
+      minsD.innerHTML = minutes;
+      secD.innerHTML = seconds;
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById('countdown').innerHTML = 'EXPIRED';
+      }
+    } else {
+      document.getElementById('countdown').style.display = 'none';
+    }
+  }, 1000);
+</script>
+
+<style>
+  .timerSection {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    color: white;
+    min-height: 550px;
+  }
+  .container {
+    width: 100%;
+  }
+  .timerSection .row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .timerSection .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .timerSection .col-left {
+    max-width: 50%;
+    display: inline-flex;
+    padding: 25px 25px 25px 50px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .timerSection .col-left * {
+    margin: 0;
+  }
+  .timerSection .col-right {
+    max-width: 40%;
+    text-align: right;
+  }
+  .timerSection .subtitle {
+    color: #fff;
+    text-align: right; /* P - SUBTITLE LIGHT HIGH */
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .timerSection .title {
+    color: #fff;
+    font-family: 'Josefin Sans';
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+  .timerSection .description p {
+    color: #fff; /* P - Regular Text */
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  .timerSection .button {
+    display: flex;
+    padding: 10px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #2c2d2c;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #fff;
+    transition: all ease-in 200ms;
+  }
+  .timerSection .button:hover {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  .timerSection .countdown-timer {
+    display: flex;
+    padding: 25px;
+    align-items: flex-start;
+    gap: 35px;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .timerSection .countdown-timer .time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timerSection .countdown-timer .time div {
+    color: #fff;
+    font-family: 'Josefin Sans';
+    font-size: 48px;
+    font-weight: 600;
+  }
+  .timerSection .countdown-timer .time p {
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  @media screen and (max-width: 600px) {
+    .timerSection .row {
+      flex-direction: column;
+    }
+    .timerSection .col-left {
+      max-width: 100%;
+      padding: 25px;
+    }
+    .timerSection .col-right {
+      max-width: 100%;
+      padding: 25px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Timer Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "imageForBg",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "This is a subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "This is a title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>This is a rich description with more details.</p>"
+    },
+    {
+      "type": "url",
+      "id": "linkForButton",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "textForButton",
+      "label": "Button Text",
+      "default": "Click Here"
+    },
+    {
+      "type": "text",
+      "id": "dateForTimer",
+      "label": "Timer End Date",
+      "info": "Enter date in the format YYYY-MM-DD (optional)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timer Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

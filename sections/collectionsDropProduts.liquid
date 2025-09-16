@@ -1,0 +1,280 @@
+<style>
+  .products {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+    width: 100%;
+    padding: 100px 0;
+  }
+
+  .products .categoriesContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .categoriesContainer ul {
+    list-style-type: none;
+    display: flex;
+    gap: 25px;
+  }
+
+  .categoriesContainer li {
+    position: relative;
+  }
+
+  .categoriesContainer span {
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .categoriesContainer li.active span::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+  }
+
+  .categoriesContainer li:hover span::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+
+  .products .productsContainer .productsList {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    padding-top: 20px;
+    align-items: start;
+  }
+
+  .products .productsContainer .productsList a {
+    text-decoration: none;
+  }
+
+  .products .Button {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .products .listButContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .products .oneProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 240px;
+  }
+
+  .products .oneProduct img {
+    height: 240px;
+    object-fit: cover;
+  }
+
+  .products .oneProduct * {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .products .categoriesContainer {
+      flex-direction: column;
+    }
+
+    .products .categoriesContainer ul {
+      flex-direction: column;
+    }
+
+    .products .productsContainer .productsList {
+      flex-direction: column;
+      gap: 25px;
+    }
+    .products .productsContainer .productsList .oneProduct {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .products .productsContainer .productsList a {
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+    }
+
+    .products .categoriesContainer {
+      align-items: center;
+    }
+
+    .products .text .subtitle {
+      padding: 0 5%;
+    }
+  }
+
+  .products .text * {
+    margin: 0;
+  }
+
+  .products .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .products .text .lightSmallTitle {
+    padding: 0 20%;
+  }
+</style>
+
+<div class="products pageWidth Section Section--spacingNormal">
+  {% if section.settings.upperTitle or section.settings.title or section.settings.subtitle %}
+    <div class="text">
+      {% if section.settings.upperTitle %}
+        <h4 class="Section--spacingNormal">{{ section.settings.upperTitle }}</h4>
+      {% endif %}
+      {% if section.settings.title %}
+        <h3 class="smallTitle">{{ section.settings.title }}</h3>
+      {% endif %}
+      {% if section.settings.subtitle %}
+        <p class="lightSmallTitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if section.blocks.size > 1 %}
+    <div class="categoriesContainer">
+      <ul>
+        {% for block in section.blocks %}
+          {% assign collection = block.settings.collection %}
+          {% if collection %}
+            <li class="{% if forloop.first %}active{% endif %}" data-category="{{ collections[collection].handle }}">
+              <span class="subtitleLightHigh">{{ collections[collection].title }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+    {% assign collection = collections[block.settings.collection] %}
+    {% if collection %}
+      <div class="productsContainer" id="productsContainer">
+        <div
+          class="listButContainer {{ collection.handle }}"
+          style=" {% if forloop.first %}{% else %}display: none;{% endif %}"
+        >
+          <div class="productsList">
+            {% assign product_counter = 0 %}
+            {% for product in collection.products %}
+              {% if product_counter < 4 %}
+                <a href="{{ product.url }}" class="oneProduct">
+                  <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                  <p class="smallLabel">{{ product.vendor }}</p>
+                  <p class="regularText">{{ product.title }}</p>
+                  <p class="smallLabel">{{ product.price | money }}</p>
+                </a>
+                {% assign product_counter = product_counter | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="buttonContainer">
+            <a style="text-decoration: none;" href="{{ collection.url }}" class="Form__Submit Button Button--primary buttonPrimary">Go To {{ collection.handle }}</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<script>
+  document.querySelectorAll('.categoriesContainer li').forEach((item) => {
+    item.addEventListener('click', () => {
+      document.querySelector('.categoriesContainer li.active')?.classList.remove('active');
+      item.classList.add('active');
+
+      const category = item.getAttribute('data-category');
+      document.querySelectorAll('.listButContainer').forEach((list) => {
+        list.style.display = 'none';
+        list.classList.remove('active');
+      });
+
+      const activeList = document.querySelector(`.listButContainer.${category}`);
+      activeList.style.display = 'flex';
+      setTimeout(() => {
+        activeList.classList.add('active');
+      }, 10);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Products Display Section",
+  "class": "shopify-section--slideshow",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Enter your title here"
+    },
+    {
+      "type": "text",
+      "id": "upperTitle",
+      "label": "Upper Title",
+      "default": "Enter your upper title here"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Enter your subtitle here"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Block",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select a collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Display Section",
+      "category": "Custom",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

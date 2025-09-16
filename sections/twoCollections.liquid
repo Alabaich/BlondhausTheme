@@ -1,0 +1,131 @@
+<style>
+  .twoCollections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .twoCollections .upperTitle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .twoCollections .upperTitle h2 {
+    margin: 0;
+  }
+
+  .twoCollections .collectionImages {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .twoCollections .collectionImages .collectionImageWrapper {
+    position: relative;
+    width: 48%;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+  }
+
+  .twoCollections .collectionImages .collectionImageWrapper:hover {
+    transform: scale(1.01);
+  }
+
+  .twoCollections .collectionImages img {
+    width: 100%;
+  }
+
+  .twoCollections .collectionImages .collectionTitle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 600px) {
+    .twoCollections .collectionImages {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .twoCollections .collectionImages .collectionImageWrapper {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="twoCollections pageWidth">
+  <div class="upperTitle">
+    <h2 class="regularText">{{ section.settings.upper_title }}</h2>
+    <h5 class="lightTitle">{{ section.settings.upper_subtitle }}</h5>
+  </div>
+  <div class="collectionImages">
+    {% if section.settings.collection_image_1 %}
+      <a href="{{ collections[section.settings.collection_1].url }}" class="collectionImageWrapper">
+        <img src="{{ section.settings.collection_image_1 | img_url: 'master' }}" alt="Collection 1">
+        <div class="collectionTitle">
+          <h3 class="lightTitle">{{ collections[section.settings.collection_1].title }}</h3>
+        </div>
+      </a>
+    {% endif %}
+    {% if section.settings.collection_image_2 %}
+      <a href="{{ collections[section.settings.collection_2].url }}" class="collectionImageWrapper">
+        <img src="{{ section.settings.collection_image_2 | img_url: 'master' }}" alt="Collection 2">
+        <div class="collectionTitle">
+          <h3 class="lightTitle">{{ collections[section.settings.collection_2].title }}</h3>
+        </div>
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Two Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "upper_title",
+      "label": "Upper Title"
+    },
+    {
+      "type": "text",
+      "id": "upper_subtitle",
+      "label": "Upper Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_image_1",
+      "label": "Collection Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_image_2",
+      "label": "Collection Image 2"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Select Collection 1"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Select Collection 2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Collections",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

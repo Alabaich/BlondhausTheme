@@ -1,0 +1,83 @@
+<style>
+  .imagePromotionCollection {
+    position: relative;
+    background-size: cover;
+    padding: 50px;
+    color: #fff;
+    width: 100%;
+    min-height: 550px;
+  }
+
+  .imagePromotionCollection .text {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+  }
+
+  .imagePromotionCollection .text * {
+    color: #2c2d2c;
+    margin: 0;
+  }
+
+  .imagePromotionCollection .text h3 b {
+    text-transform: uppercase;
+  }
+
+  .imagePromotionCollection .Button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+  }
+</style>
+
+{% assign collection = collections[section.settings.collection] %}
+
+{% if collection %}
+  <div
+    class="imagePromotionCollection"
+    style="background-image: url('{{ section.settings.image | image_url: width: 2000 }}');"
+  >
+    <div class="text" style="left: 25px; top: 25px;">
+      <h3>
+        DISCOVER <b>{{ collection.title }}</b>
+      </h3>
+      <p class="regularText">{{ section.settings.text }}</p>
+    </div>
+    <a class="Form__Submit Button Button--primary buttonPrimary" href="{{ collection.url }}">Shop Now</a>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Image Prom Collection",
+  "class": "shopify-section--image-promotion",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Upload Image"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Additional Text",
+      "default": "Enter additional text here"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select a collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Prom Collection",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

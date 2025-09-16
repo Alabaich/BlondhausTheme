@@ -1,0 +1,130 @@
+<style>
+  .pricingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .pricingContainer .upperTitle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .pricingContainer .upperTitle h2 {
+    margin: 0;
+  }
+
+  .pricingContainer .prices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%;
+  }
+
+  .pricingContainer .prices h5 {
+    margin: 0;
+  }
+
+  .pricingContainer .prices .serviceWithBorder {
+    border-top: 1px solid #2c2d2c;
+    border-bottom: 1px solid #2c2d2c;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pricingContainer .prices .serviceWithBorder h5 {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+
+  @media screen and (max-width: 600px) {
+    .pricingContainer .prices {
+      width: 90%;
+    }
+  }
+</style>
+
+<div class="pricingContainer pageWidth">
+  <div class="upperTitle">
+    <h2>{{ section.settings.upper_title }}</h2>
+    <h5>{{ section.settings.upper_subtitle }}</h5>
+  </div>
+  <div class="prices">
+    <h5>{{ section.settings.pricing_title }}</h5>
+    {% for block in section.blocks %}
+      <div class="serviceWithBorder">
+        <h5>{{ block.settings.service_title }}</h5>
+        <p class="bold">{{ block.settings.service_price }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="buttonContainer">
+    <a style="text-decoration: none;" class="Form__Submit Button Button--primary buttonPrimary" href="{{ section.settings.button_link }}">
+      {{- section.settings.button_text -}}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Pricing Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "upper_title",
+      "label": "Upper Title"
+    },
+    {
+      "type": "text",
+      "id": "upper_subtitle",
+      "label": "Upper Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "pricing_title",
+      "label": "Pricing Title",
+      "default": "Pricing"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Book An Appointment"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "service_title",
+          "label": "Service Title"
+        },
+        {
+          "type": "text",
+          "id": "service_price",
+          "label": "Service Price"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

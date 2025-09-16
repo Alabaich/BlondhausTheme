@@ -1,0 +1,137 @@
+<style>
+  .servicesImagesContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .servicesImagesContainer .images {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 25px;
+  }
+
+  .servicesImagesContainer .images .oneImage {
+    position: relative;
+    text-align: center;
+  }
+
+  .servicesImagesContainer .images .oneImage:hover {
+    cursor: pointer;
+  }
+
+  .servicesImagesContainer .images .oneImage:hover .textContainer h4::after {
+    width: 100%;
+  }
+
+  .servicesImagesContainer .images .textContainer {
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .servicesImagesContainer .images .textContainer h4 {
+    margin: 0;
+    position: relative;
+    line-height: normal;
+  }
+
+  .servicesImagesContainer .images .textContainer h4::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .servicesImagesContainer .images .textContainer h4,
+  .servicesImagesContainer .images .textContainer p {
+    color: #fff;
+  }
+
+  .servicesImagesContainer .images img {
+    width: 100%;
+    min-width: 200px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .servicesImagesContainer {
+      padding: 0 5px;
+    }
+
+    .servicesImagesContainer .images {
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .servicesImagesContainer .images .oneImage {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+
+<div class="servicesImagesContainer pageWidth">
+  <div class="images">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}" class="oneImage" data-shopify-editor-block="{{ block.id }}">
+        <img src="{{ block.settings.image | img_url: '1024x1024' }}" alt="{{ block.settings.title }}">
+        <div class="textContainer">
+          <h4>{{ block.settings.title }}</h4>
+          <p class="regularText">{{ block.settings.regularText }}</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Services Images Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "service_image",
+      "name": "Service Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Coloring"
+        },
+        {
+          "type": "text",
+          "id": "regularText",
+          "label": "Regular Text",
+          "default": "From $150"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services Images Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,219 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+  .listOfImages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 350px;
+  }
+
+  .listOfImages .courses-image {
+    position: relative;
+    width: 32%;
+    min-height: 300px;
+    background-size: cover;
+    background-position: center center;
+    transition: all ease-in 300ms;
+  }
+
+  .listOfImages .textContainer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+    background-color: #2c2d2c5b;
+    transition: all ease-in 300ms;
+    width: 95%;
+  }
+
+  .listOfImages .textContainer .textFlexContainer {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .listOfImages .textContainer .textFlexContainer h4 {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+    transition: all linear 300ms;
+  }
+
+  .listOfImages .textContainer .textFlexContainer p {
+    color: #fff;
+    font-size: 14px;
+    transition: all linear 300ms;
+  }
+
+  .listOfImages .active {
+    width: 36%;
+    min-height: 350px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .listOfImages .active .textContainer .textFlexContainer h4 {
+    font-size: 24px;
+  }
+
+  .listOfImages .active .textContainer .textFlexContainer p {
+    font-size: 14px;
+  }
+
+  .listOfImagesContainer h2 {
+    width: 100%;
+    text-align: center;
+  }
+  .listOfImages .textContainer .textFlexContainer .durationWithSVG {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .listOfImages .textContainer .textFlexContainer .durationWithSVG .duration {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 300;
+  }
+</style>
+
+<div class="listOfImagesContainer pageWidth">
+  <h2>
+    {{ section.settings.title }}
+  </h2>
+  <div class="listOfImages">
+    {% for block in section.blocks %}
+      <a
+        href="{{ block.settings.link }}"
+        style="background-image: url({{  block.settings.image | img_url: '1000x' }} );"
+        class="courses-image"
+      >
+        <div class="textContainer">
+          <div class="textFlexContainer">
+            <h4>{{ block.settings.title }}</h4>
+            <div class="durationWithSVG">
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2.25C6.76387 2.25 5.5555 2.61656 4.52769 3.30331C3.49988 3.99007 2.6988 4.96619 2.22576 6.10823C1.75271 7.25027 1.62894 8.50693 1.87009 9.71931C2.11125 10.9317 2.70651 12.0453 3.58059 12.9194C4.45466 13.7935 5.56831 14.3888 6.78069 14.6299C7.99307 14.8711 9.24974 14.7473 10.3918 14.2742C11.5338 13.8012 12.5099 13.0001 13.1967 11.9723C13.8834 10.9445 14.25 9.73613 14.25 8.5C14.2482 6.84296 13.5891 5.2543 12.4174 4.08259C11.2457 2.91088 9.65705 2.25182 8 2.25ZM8 14.25C6.86276 14.25 5.75106 13.9128 4.80547 13.281C3.85989 12.6491 3.1229 11.7511 2.6877 10.7004C2.25249 9.64975 2.13862 8.49362 2.36049 7.37823C2.58235 6.26284 3.12999 5.23829 3.93414 4.43414C4.73829 3.62998 5.76284 3.08235 6.87823 2.86048C7.99362 2.63862 9.14976 2.75249 10.2004 3.18769C11.2511 3.6229 12.1491 4.35989 12.781 5.30547C13.4128 6.25105 13.75 7.36276 13.75 8.5C13.7483 10.0245 13.142 11.4861 12.064 12.564C10.9861 13.642 9.52449 14.2483 8 14.25ZM11.75 8.5C11.75 8.5663 11.7237 8.62989 11.6768 8.67678C11.6299 8.72366 11.5663 8.75 11.5 8.75H8C7.9337 8.75 7.87011 8.72366 7.82323 8.67678C7.77634 8.62989 7.75 8.5663 7.75 8.5V5C7.75 4.9337 7.77634 4.87011 7.82323 4.82322C7.87011 4.77634 7.9337 4.75 8 4.75C8.06631 4.75 8.1299 4.77634 8.17678 4.82322C8.22366 4.87011 8.25 4.9337 8.25 5V8.25H11.5C11.5663 8.25 11.6299 8.27634 11.6768 8.32322C11.7237 8.37011 11.75 8.4337 11.75 8.5Z" fill="white"/>
+              </svg>
+
+              <p class="duration">
+                {{ block.settings.duration }} week{% if block.settings.duration > 1 %}s{% endif %}
+              </p>
+            </div>
+            <p>{{ block.settings.description }}</p>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Select the section containing the images
+    const section = document.querySelector('.listOfImages');
+
+    if (section) {
+      // Select all the image blocks
+      const images = section.querySelectorAll('.courses-image');
+      const secondChild = images[1]; // The second child (always active by default)
+
+      // Add the 'active' class to the second child initially
+      secondChild.classList.add('active');
+
+      // Function to handle hover events
+      function handleHover(event) {
+        // Remove the 'active' class from all images
+        images.forEach((img) => img.classList.remove('active'));
+
+        // Add the 'active' class to the hovered image
+        event.currentTarget.classList.add('active');
+      }
+
+      // Function to reset the 'active' class when hover ends
+      function handleMouseLeave() {
+        // Remove the 'active' class from all images
+        images.forEach((img) => img.classList.remove('active'));
+
+        // Re-add the 'active' class to the second child
+        secondChild.classList.add('active');
+      }
+
+      // Add event listeners to all images for hover and mouseleave
+      images.forEach((img) => {
+        img.addEventListener('mouseenter', handleHover);
+        img.addEventListener('mouseleave', handleMouseLeave);
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Courses Hover List",
+  "class": "shopify-section--slideshow",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Courses"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1560 x 1050px jpg recommended"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link to Course"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "range",
+          "id": "duration",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "unit": "wk",
+          "label": "Duration",
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Courses Hover List",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

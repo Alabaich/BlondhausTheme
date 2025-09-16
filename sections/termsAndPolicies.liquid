@@ -1,0 +1,60 @@
+<section
+  class="termsAndPoliciesMainContainer pageWidth"
+>
+  <div class="textContainer pageWidth">
+    <h3 class="lightTitle">{{ section.settings.title }}</h3>
+    <p class="regularText">
+      {{ section.settings.description }}
+    </p>
+  </div>
+</section>
+
+<style>
+  .termsAndPoliciesMainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .termsAndPoliciesMainContainer .textContainer h3 {
+    text-align: center;
+  }
+
+  .termsAndPoliciesMainContainer .textContainer p {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+  }
+
+  @media screen and (max-width: 1500px) {
+    .termsAndPoliciesMainContainer .textContainer {
+      width: 65%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Terms And Policies",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Terms & Policies: Your Guide to a Seamless Experience"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Terms And Policies",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

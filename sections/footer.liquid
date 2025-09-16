@@ -1,0 +1,402 @@
+<style>
+  .site-footer {
+    padding: 40px 0;
+    color: #333;
+    width: 100%;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 100;
+  }
+
+  .footer-wrapper {
+    padding: 50px 25px;
+    background-color: #f8f8f8;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .footer-blocks {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .nav-blocks-container {
+    display: flex;
+    flex: 2;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .footer-block {
+    flex: 1 1 auto;
+  }
+
+  .nav-block {
+    min-width: 120px;
+    max-width: 180px;
+    margin-right: 0;
+  }
+
+  .footer-block-content,
+  .about-shop-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-block-title {
+    color: #2c2d2c;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .footer-block-title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .footer-block-title a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-parent-link {
+    color: #2c2d2c;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .footer-child-link {
+    color: #2c2d2c;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+  }
+
+  .newsletter-block {
+    flex-basis: 250px;
+    max-width: 350px;
+  }
+
+  .newsletter-block .footer-block-content {
+    gap: 10px;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-email {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .buttonPrimary {
+    padding: 10px 20px;
+    background: #2c2d2c;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-icons a {
+    display: inline-block;
+  }
+
+  .social-icons svg {
+    width: 32px;
+    height: 32px;
+    fill: #333;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: #888;
+    font-size: 13px;
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+  .about-shop-block {
+    flex-basis: 250px;
+    max-width: 250px;
+  }
+
+  .about-shop-block .footer-block-content {
+    gap: 10px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .footer-bottom small {
+    font-size: 14px;
+    color: #2c2d2c;
+  }
+
+  @media (max-width: 768px) {
+    .footer-blocks {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-shop-block {
+      flex-basis: 100px;
+    }
+
+    .nav-blocks-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .footer-block {
+      max-width: 100%;
+    }
+
+    .nav-block {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="image-container">
+    {% if section.settings.footer_image != blank %}
+      <img
+        src="{{ section.settings.footer_image | img_url: 'master' }}"
+        alt="{{ section.settings.footer_image.alt | default: 'Image description' }}"
+        style="max-width: 100%; height: auto;"
+      >
+    {% endif %}
+  </div>
+  <div class="footer-wrapper">
+    <div class="footer-blocks">
+      {% if section.settings.newsletter_enable %}
+        <div class="footer-block newsletter-block">
+          <div class="footer-block-content newsletter">
+            <h4 class="footer-block-title">{{ section.settings.newsletter_heading | escape }}</h4>
+            <p>
+              Stay ahead in the world of hair care with our newsletter subscription. Get exclusive access to the latest
+              trends, expert tips, and special offers delivered straight to your inbox.
+            </p>
+            {%- form 'customer' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="newsletter-form">
+                <input
+                  type="email"
+                  name="contact[email]"
+                  id="Email-{{ section.id }}"
+                  class="input-email"
+                  placeholder="E-mail"
+                  required
+                >
+                <button type="submit" class="button buttonPrimary">SUBSCRIBE</button>
+              </div>
+            {%- endform -%}
+
+            {% if section.settings.show_social %}
+              <div class="social-icons">
+                <a href="https://www.facebook.com/agstylistintl/">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29.3332 15.9998C29.3332 8.63984 23.3598 2.6665 15.9998 2.6665C8.63984 2.6665 2.6665 8.63984 2.6665 15.9998C2.6665 22.4532 7.25317 27.8265 13.3332 29.0665V19.9998H10.6665V15.9998H13.3332V12.6665C13.3332 10.0932 15.4265 7.99984 17.9998 7.99984H21.3332V11.9998H18.6665C17.9332 11.9998 17.3332 12.5998 17.3332 13.3332V15.9998H21.3332V19.9998H17.3332V29.2665C24.0665 28.5998 29.3332 22.9198 29.3332 15.9998Z" fill="#2C2D2C"/>
+                  </svg>
+                </a>
+                <a href="#">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.1467 16.3239C18.1386 16.7463 18.0053 17.1568 17.7637 17.5033C17.5221 17.8499 17.1831 18.1169 16.7895 18.2705C16.396 18.4241 15.9657 18.4575 15.5532 18.3663C15.1407 18.2751 14.7646 18.0635 14.4725 17.7583C14.1804 17.4531 13.9855 17.068 13.9125 16.6519C13.8395 16.2358 13.8916 15.8074 14.0624 15.421C14.2331 15.0346 14.5148 14.7076 14.8716 14.4814C15.2284 14.2552 15.6443 14.1401 16.0667 14.1506C16.6279 14.1713 17.1589 14.4099 17.5472 14.8156C17.9355 15.2213 18.1505 15.7623 18.1467 16.3239Z" fill="#2C2D2C"/>
+                    <path d="M19.684 9.64404H12.4506C11.7349 9.64404 11.0485 9.92837 10.5424 10.4345C10.0363 10.9406 9.75195 11.627 9.75195 12.3427V19.7387C9.75195 20.0931 9.82176 20.444 9.95738 20.7714C10.093 21.0989 10.2918 21.3964 10.5424 21.647C10.793 21.8975 11.0905 22.0963 11.4179 22.232C11.7453 22.3676 12.0962 22.4374 12.4506 22.4374H19.684C20.0383 22.4374 20.3893 22.3676 20.7167 22.232C21.0441 22.0963 21.3416 21.8975 21.5922 21.647C21.8428 21.3964 22.0416 21.0989 22.1772 20.7714C22.3128 20.444 22.3826 20.0931 22.3826 19.7387V12.356C22.384 12.0006 22.3153 11.6484 22.1803 11.3196C22.0454 10.9908 21.8468 10.6919 21.5961 10.44C21.3454 10.188 21.0475 9.98803 20.7194 9.85145C20.3912 9.71487 20.0394 9.64439 19.684 9.64404ZM16.0666 19.9414C15.3506 19.9575 14.6459 19.76 14.0427 19.3739C13.4394 18.9879 12.9648 18.4308 12.6795 17.7739C12.3942 17.1169 12.3112 16.3898 12.4409 15.6855C12.5706 14.9811 12.9073 14.3313 13.408 13.8191C13.9086 13.3069 14.5505 12.9555 15.2517 12.8097C15.953 12.664 16.6817 12.7304 17.345 13.0006C18.0083 13.2709 18.5761 13.7326 18.9758 14.3269C19.3755 14.9212 19.5891 15.6211 19.5893 16.3374C19.5947 16.8054 19.5079 17.2698 19.3338 17.7042C19.1597 18.1387 18.9018 18.5345 18.5746 18.8692C18.2475 19.2039 17.8576 19.4708 17.4273 19.6548C16.997 19.8388 16.5346 19.9362 16.0666 19.9414ZM19.9813 12.7347C19.8933 12.7347 19.8062 12.7172 19.7251 12.6831C19.644 12.6491 19.5705 12.5991 19.5089 12.5363C19.4473 12.4735 19.3989 12.399 19.3664 12.3172C19.334 12.2354 19.3182 12.148 19.32 12.06C19.32 11.8811 19.391 11.7095 19.5176 11.583C19.6441 11.4565 19.8157 11.3854 19.9946 11.3854C20.1736 11.3854 20.3452 11.4565 20.4717 11.583C20.5982 11.7095 20.6693 11.8811 20.6693 12.06C20.6719 12.1553 20.654 12.25 20.6166 12.3376C20.5793 12.4253 20.5234 12.5039 20.4529 12.5679C20.3824 12.632 20.2988 12.6801 20.208 12.7089C20.1172 12.7376 20.0212 12.7465 19.9266 12.7347H19.9813Z" fill="#2C2D2C"/>
+                    <path d="M16.0667 2.66667C12.5305 2.64899 9.13204 4.03679 6.61905 6.52477C4.10607 9.01276 2.68435 12.3971 2.66667 15.9333C2.64899 19.4696 4.03679 22.868 6.52477 25.381C9.01276 27.8939 12.3971 29.3157 15.9333 29.3333C17.6843 29.3421 19.4198 29.0059 21.0409 28.3439C22.6619 27.6819 24.1367 26.7072 25.381 25.4752C26.6253 24.2433 27.6147 22.7784 28.2929 21.164C28.971 19.5497 29.3246 17.8176 29.3333 16.0667C29.3421 14.3157 29.0059 12.5802 28.3439 10.9592C27.6819 9.33813 26.7072 7.86336 25.4752 6.61905C24.2433 5.37475 22.7784 4.38527 21.164 3.70712C19.5497 3.02897 17.8176 2.67543 16.0667 2.66667ZM24.164 19.6027C24.1677 20.2008 24.0527 20.7938 23.8255 21.3472C23.5983 21.9006 23.2636 22.4034 22.8407 22.8264C22.4178 23.2495 21.9151 23.5843 21.3618 23.8117C20.8084 24.039 20.2155 24.1542 19.6173 24.1507H12.5187C11.9206 24.154 11.3278 24.0387 10.7746 23.8114C10.2214 23.5842 9.71871 23.2494 9.29573 22.8266C8.87276 22.4037 8.53786 21.9012 8.31041 21.348C8.08296 20.7949 7.96749 20.2021 7.97067 19.604V12.504C7.96696 11.9058 8.08201 11.3129 8.30917 10.7595C8.53633 10.2061 8.87107 9.70332 9.29399 9.28027C9.71691 8.85723 10.2196 8.52234 10.7729 8.29501C11.3262 8.06769 11.9192 7.95246 12.5173 7.956H19.6173C20.2154 7.95247 20.8082 8.06765 21.3615 8.29489C21.9147 8.52213 22.4173 8.85690 22.8402 9.27980C23.2631 9.70271 23.5979 10.2053 23.8251 10.7586C24.0524 11.3118 24.1675 11.9046 24.164 12.5027V19.6027Z" fill="#2C2D2C"/>
+                  </svg>
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="nav-blocks-container">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'link_list' %}
+              {% if block.settings.menu != blank %}
+                {% for link in linklists[block.settings.menu].links %}
+                  <div class="footer-block nav-block" {{ block.shopify_attributes }} data-block-type="link_list">
+                    {% if block.settings.heading != blank %}
+                      <h4 class="footer-block-title">
+                        <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                      </h4>
+                    {% else %}
+                      <h4 class="footer-block-title">
+                        <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                      </h4>
+                    {% endif %}
+
+                    {% if link.links != blank %}
+                      <ul class="footer-links">
+                        {% for child_link in link.links %}
+                          <li>
+                            <a href="{{ child_link.url }}" class="footer-child-link">{{ child_link.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'text' %}
+            <div class="footer-block about-shop-block" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h4 class="footer-block-title">{{ block.settings.heading | escape }}</h4>
+              {% endif %}
+              <div class="footer-block-content text-content">
+                {{ block.settings.subtext }}
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Footer settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "label": "Enable newsletter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social media icons",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_image",
+      "label": "Footer image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Link list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading (optional)",
+          "info": "Если оставить пустым, будет использовано название родительской ссылки"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "About the shop"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "label": "Text",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "link_list"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

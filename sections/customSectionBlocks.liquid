@@ -1,0 +1,91 @@
+<style>
+  .custom-section__header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .custom-section__blocks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-radius: 5px;
+  }
+
+  .custom-section__block {
+    flex: 1 1 calc(33.333% - 20px);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 5px;
+  }
+
+  .custom-section__block h2 {
+    margin: 0;
+  }
+</style>
+
+<section class="custom-section pageWidth">
+  <div class="custom-section__header">
+    <h5>{{ section.settings.upper_title }}</h5>
+    <h1>{{ section.settings.title }}</h1>
+    <p class="lightSmallTitle">{{ section.settings.subtitle }}</p>
+  </div>
+
+  <div class="custom-section__blocks">
+    {% for block in section.blocks %}
+      <div class="custom-section__block">
+        <p class="regularText">{{ block.settings.block_title }}</p>
+        <p class="lightSmallTitle">{{ block.settings.block_subtitle }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "upper_title",
+      "label": "Upper Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "block_title",
+          "label": "Block Title"
+        },
+        {
+          "type": "text",
+          "id": "block_subtitle",
+          "label": "Block Subtitle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

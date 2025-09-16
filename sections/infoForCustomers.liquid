@@ -1,0 +1,173 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+  .InfoSection {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .InfoSection * {
+    margin: 0;
+  }
+
+  .InfoSection__Items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 20px;
+  }
+
+  .InfoSection__Item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 5px;
+    width: 250px;
+    flex: 1;
+  }
+
+  .InfoSection__Item h5 {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .InfoSection__Icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  h5.regularText {
+    margin: 0;
+  }
+
+  .InfoSection .Container h5.lightSmallTitle,
+  .InfoSection .Container h2.title {
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+  }
+
+  .InfoSection .Container h2.title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    text-transform: uppercase;
+  }
+
+  .InfoSection .Container h5.lightSmallTitle,
+  .InfoSection .Container p.lightSmallTitle {
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  .InfoSection .Container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  @media (max-width: 1500px) {
+    .InfoSection .Container {
+      width: 85%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .InfoSection__Items {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .InfoSection .Container {
+      width: 100%;
+    }
+
+    .InfoSection__Item {
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="InfoSection pageWidth">
+  <div class="Container">
+    {% if section.settings.title1 or section.settings.title2 or section.settings.title3 %}
+      <p class="lightSmallTitle">{{ section.settings.title1 | escape }}</p>
+      <h2>{{ section.settings.title2 | escape }}</h2>
+      <p class="lightSmallTitle">{{ section.settings.title3 | escape }}</p>
+    {% endif %}
+
+    <div class="InfoSection__Items">
+      {%- for block in section.blocks -%}
+        <div class="InfoSection__Item">
+          <div class="InfoSection__Icon">
+            {%- if block.settings.icon_svg_code != blank -%}
+              {{ block.settings.icon_svg_code | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' }}
+            {%- endif -%}
+          </div>
+          <p class="regularText">{{ block.settings.title | escape }}</p>
+          <p class="smallLabel">{{ block.settings.description | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Info for Customer Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title1",
+      "label": "Upper Title"
+    },
+    {
+      "type": "text",
+      "id": "title2",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title3",
+      "label": "Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info_block",
+      "name": "Info Block",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg_code",
+          "label": "SVG Icon Code",
+          "info": "Insert SVG code here"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Info for Customer Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

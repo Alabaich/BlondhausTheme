@@ -1,0 +1,100 @@
+<style>
+  .CustomSection {
+    padding: 50px 100px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .CustomSection__Blocks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+  }
+
+  .CustomSection__Block {
+    padding: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .CustomSection__Block p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .CustomSection__Block {
+      width: 250px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .CustomSection {
+      padding: 50px 20px;
+    }
+
+    .CustomSection__Block {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="CustomSection">
+  <h2>{{ section.settings.title | escape }}</h2>
+  <h5 class="lightSmallTitle">{{ section.settings.subtitle | escape }}</h5>
+
+  <div class="CustomSection__Blocks">
+    {%- for block in section.blocks -%}
+      <div class="CustomSection__Block">
+        <p class="regularText">{{ block.settings.block_content | escape }}</p>
+        <p class="smallLabel">{{ block.settings.block_label | escape }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Spotlight Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block_content",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "block_content",
+          "label": "Block Content"
+        },
+        {
+          "type": "textarea",
+          "id": "block_label",
+          "label": "Block Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spotlight Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

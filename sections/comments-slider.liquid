@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+<style>
+  .comments-slider-container .title {
+    font-family: Urbanist;
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .comments-slider-container .subtitle {
+    font-family: Urbanist;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  .comments-slider-container .reviewInner {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .comments-slider-container .reviewInner img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    object-fit: cover;
+  }
+
+  .comments-slider-container .reviewInnerText {
+    display: flex;
+    width: 800px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .comments-slider-container .reviewInnerText h4 {
+    margin: 0;
+  }
+
+  .comments-slider-container .reviewText {
+    font-size: 1.25rem;
+  }
+
+  .comments-slider-container .splide__arrow svg {
+    fill: var(--blue) !important;
+  }
+
+  .comments-slider-container .splide__slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .comments-slider-container .splide__arrow--prev {
+    left: 5em;
+  }
+
+  .comments-slider-container .splide__arrow--next {
+    right: 5em;
+  }
+
+  .splide__pagination {
+    display: none;
+  }
+
+  @media screen and (max-width: 1500px) {
+    .comments-slider-container .reviewInner {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .comments-slider-container .splide__arrow--prev {
+      left: 3em;
+    }
+
+    .comments-slider-container .splide__arrow--next {
+      right: 3em;
+    }
+
+    .comments-slider-container .reviewInnerText {
+      width: 65%;
+    }
+
+    .comments-slider-container .reviewInner img {
+      display: none;
+    }
+
+    .comments-slider-container .title {
+      font-size: 32px;
+    }
+
+    .comments-slider-container .subtitle {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<section class="splide comments-slider-container">
+  <h1 class="title">{{ section.settings.title }}</h1>
+  <p class="subtitle">{{ section.settings.subtitle }}</p>
+
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for block in section.blocks %}
+        <li class="splide__slide">
+          <div class="reviewInner">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: '100x100' }}">
+            {% endif %}
+            <div class="reviewInnerText">
+              <h4 class="smallTitle">
+                {{ block.settings.name }}
+              </h4>
+              <p class="smallLabel">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('.splide', { rewind: true }).mount();
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+{% schema %}
+{
+  "name": "Comments Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What our customers say"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Real reviews from our customers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comment",
+      "name": "Comment",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer Name"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer Avatar"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comments Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

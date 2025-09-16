@@ -1,0 +1,202 @@
+<style>
+  .switchSIdeImage {
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row;
+  }
+
+  .switchSIdeImage.leftImage .textContainer {
+    padding-left: 50px;
+  }
+
+  .switchSIdeImage.rightImage .textContainer {
+    padding-right: 50px;
+  }
+
+  .switchSIdeImage .textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 45%;
+  }
+
+  .switchSIdeImage .textContainer .heading {
+    margin: 0;
+  }
+
+  .switchSIdeImage .textContainer .subtitle {
+    margin: 0;
+  }
+
+  .switchSIdeImage .textContainer p {
+    text-align: left;
+  }
+
+  .switchSIdeImage.leftAlign .textContainer p,
+  .switchSIdeImage.leftAlign .textContainer .heading,
+  .switchSIdeImage.leftAlign .textContainer .subtitle {
+    text-align: left;
+  }
+
+  .switchSIdeImage.centerAlign .textContainer p,
+  .switchSIdeImage.centerAlign .textContainer .heading,
+  .switchSIdeImage.centerAlign .textContainer .subtitle {
+    text-align: center;
+  }
+
+  .switchSIdeImage.rightAlign .textContainer p,
+  .switchSIdeImage.rightAlign .textContainer .heading,
+  .switchSIdeImage.rightAlign .textContainer .subtitle {
+    text-align: right;
+  }
+
+  .switchSIdeImage .imgContainer {
+    width: 45%;
+  }
+
+  .switchSIdeImage .imgContainer img {
+    width: 100%;
+    border-radius: 5px;
+    max-height: 550px;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 600px) {
+    .switchSIdeImage {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+    }
+
+    .switchSIdeImage .textContainer {
+      padding: 0 15px;
+    }
+
+    .switchSIdeImage .textContainer p {
+      text-align: center;
+      padding: 0 15px;
+    }
+
+    .switchSIdeImage .textContainer .heading,
+    .switchSIdeImage .textContainer .subtitle {
+      padding: 0 15px;
+    }
+
+    .switchSIdeImage .imgContainer,
+    .switchSIdeImage .textContainer {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="switchSIdeImage pageWidth {% if section.settings.image_position == 'left' %}leftImage{% else %}rightImage{% endif %} {% if section.settings.text_align == 'left' %}leftAlign{% elsif section.settings.text_align == 'center' %}centerAlign{% else %}rightAlign{% endif %}">
+  {% if section.settings.image_position == 'left' %}
+    <div class="imgContainer">
+      {% if section.settings.image %}
+        <img src="{{ section.settings.image | img_url: '1024x1024' }}" alt="" loading="lazy">
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="textContainer">
+    {% if section.settings.heading %}
+      <h3 class="heading">{{ section.settings.heading }}</h3>
+    {% endif %}
+    {% if section.settings.subtitle %}
+      <h4 class="subtitle">{{ section.settings.subtitle }}</h4>
+    {% endif %}
+    {% if section.settings.description %}
+      <p class="lightSmallTitle">{{ section.settings.description }}</p>
+    {% endif %}
+    {% if section.settings.bottom_text %}
+      <div>{{ section.settings.bottom_text }}</div>
+    {% endif %}
+  </div>
+  {% if section.settings.image_position == 'right' %}
+    <div class="imgContainer">
+      {% if section.settings.image %}
+        <img src="{{ section.settings.image | img_url: '1024x1024' }}" alt="" loading="lazy">
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Switch Side Image Section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_text",
+      "label": "Bottom Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Switch Side Image Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

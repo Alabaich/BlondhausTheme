@@ -1,0 +1,156 @@
+<style>
+  .categoriesWithTitle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .categoriesWithTitle .upperText {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .categoriesWithTitle .imgContainer {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    gap: 10px;
+    width: 100%;
+    /* max-width: 900px; */
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .categoriesWithTitle .imgContainer .oneImage {
+    position: relative;
+  }
+
+  .categoriesWithTitle .imgContainer .oneImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  .categoriesWithTitle .imgContainer .oneImage:nth-child(1) {
+    grid-row: span 2;
+  }
+
+  .categoriesWithTitle .imgContainer .textOverlay {
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(44, 45, 44, 0.5);
+    text-align: center;
+  }
+
+  .categoriesWithTitle .imgContainer .textOverlay p {
+    color: #fff;
+  }
+
+  .categoriesWithTitleMainContainer .Section--spacingNormal {
+    padding: 0;
+  }
+
+  .pageWidth {
+    width: 100%;
+    padding: 25px;
+  }
+
+  @media screen and (max-height: 600px) {
+    .pageWidth {
+      padding: 15px;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .pageWidth {
+      padding: 25px 15%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .categoriesWithTitle .imgContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .categoriesWithTitle .imgContainer .textOverlay {
+      bottom: 35px;
+    }
+  }
+</style>
+
+<div class="categoriesWithTitleMainContainer pageWidth">
+  <div class="categoriesWithTitle Section Section--spacingNormal">
+    {% if section.settings.title_label or section.settings.title %}
+      <div class="titleContainer">
+        {% if section.settings.title_label %}
+          <p class="smallLabel">{{ section.settings.title_label }}</p>
+        {% endif %}
+        {% if section.settings.title %}
+          <h3>{{ section.settings.title }}</h3>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="imgContainer">
+      {% for block in section.blocks %}
+        {% if block.settings.collection %}
+          {% assign collection = collections[block.settings.collection] %}
+          <div class="oneImage">
+            <a href="{{ collection.url }}">
+              <img src="{{ collection.image | img_url: '800x800' }}" alt="{{ collection.title }}">
+              <div class="textOverlay">
+                <p class="subtitleLight">{{ collection.title }}</p>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_label",
+      "label": "Title Label",
+      "default": "DISCOVER OUR"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "COLLECTIONS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_collection",
+      "name": "Category Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Select a collection to display"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection List",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

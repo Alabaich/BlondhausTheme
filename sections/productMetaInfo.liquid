@@ -1,0 +1,117 @@
+<style>
+  .description-and-shipping {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .description-and-shipping .mainDescriptionContainer {
+    width: 100%;
+  }
+
+  .description-and-shipping .mainDescriptionContainer {
+    border-top: 1px solid #2c2d2c42;
+    border-bottom: 1px solid #2c2d2c42;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .description-and-shipping .descriptionContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .description-and-shipping .descriptionContainer svg {
+    transition: transform 0.3s ease;
+  }
+
+  .description-and-shipping .descriptionContainer.active svg {
+    transform: rotate(-135deg);
+  }
+
+  .descriptionContent p {
+    font-weight: 200;
+    font-family: Montserrat;
+    font-size: 1rem;
+    margin: 0;
+  }
+  .descriptionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding-top 0.3s ease;
+    padding-top: 0;
+  }
+
+  .descriptionContainer.active + .descriptionContent {
+    padding-bottom: 20px;
+  }
+
+  @media screen and (max-width: 1500px) {
+    .description-and-shipping .mainDescriptionContainer {
+      width: 90%;
+    }
+  }
+</style>
+
+<section class="description-and-shipping pageWidth">
+  <div class="mainDescriptionContainer">
+    <div class="descriptionContainer">
+      <p class="regularText">PRODUCT DETAILS</p>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99805H13V10.998H19V12.998Z" fill="#2C2D2C" fill-opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="descriptionContent">
+      <p class="smallLabel">{{ product.description }}</p>
+    </div>
+  </div>
+
+  <div class="mainDescriptionContainer">
+    <div class="descriptionContainer">
+      <p class="regularText">SHIPPING & RETURNS</p>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99805H13V10.998H19V12.998Z" fill="#2C2D2C" fill-opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="descriptionContent">
+      <p class="smallLabel">Shipping Info</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.descriptionContainer').forEach((container) => {
+    container.addEventListener('click', () => {
+      container.classList.toggle('active');
+      const content = container.nextElementSibling;
+
+      if (container.classList.contains('active')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.paddingTop = '25px';
+        content.style.overflow = 'visible';
+      } else {
+        content.style.maxHeight = '0';
+        content.style.paddingTop = '0';
+        content.style.overflow = 'hidden';
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Description, shipping",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Description, shipping",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

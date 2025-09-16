@@ -1,0 +1,156 @@
+<style>
+  .selectedBrandMainContainer .Section--spacingNor {
+    padding: 0;
+  }
+
+  .selectedBrandMainContainer {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .selectedBrands {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .selectedBrands * {
+    margin: 0;
+  }
+
+  .selectedBrands .upperText {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .selectedBrands .brandsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .selectedBrands .brandsContainer .oneBlock {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .selectedBrands .brandsContainer .oneBlock img {
+    width: 100%;
+    max-width: 200px;
+    max-height: 100px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1500px) {
+    .selectedBrands {
+      padding: 0 15%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .selectedBrands .upperText {
+      padding: 0 15px;
+    }
+
+    .selectedBrands .brandsContainer {
+      gap: 25px;
+      flex-direction: column;
+    }
+
+    .selectedBrands .brandsContainer .oneBlock img {
+      max-width: 200px;
+    }
+  }
+</style>
+<div class="selectedBrandMainContainer pageWidth">
+  <div class="selectedBrands Section  Section--spacingNormal">
+    {% if section.settings.upper_title or section.settings.title or section.settings.subtitle %}
+      <div class="upperText">
+        {% if section.settings.upper_title %}
+          <p class="regularText">{{ section.settings.upper_title }}</p>
+        {% endif %}
+        {% if section.settings.title %}
+          <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.subtitle %}
+          <p class="lightSmallTitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="brandsContainer">
+      {% for block in section.blocks %}
+        <div class="oneBlock">
+          {% if block.settings.linkTo %}
+            <a href="{{ block.settings.linkTo }}">
+              <img
+                src="{{ block.settings.icon | img_url: 'original' }}"
+                alt=""
+                width="250"
+                height="auto"
+                loading="lazy"
+              >
+            </a>
+          {% else %}
+            <img src="{{ block.settings.icon | img_url: 'original' }}" alt="" width="250" height="auto" loading="lazy">
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Icons Rich Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "upper_title",
+      "label": "Upper Title",
+      "default": "Default Upper Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "Default Main Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Default Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "linkTo",
+          "label": "Image Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icons Rich Text",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

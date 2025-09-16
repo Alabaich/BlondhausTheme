@@ -1,0 +1,138 @@
+<style>
+  .CertificationSection {
+    padding: 50px 100px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 85%;
+  }
+
+  .CertificationSection h1 {
+    text-transform: uppercase;
+  }
+  .CertificationSection h3 {
+    text-transform: uppercase;
+  }
+
+  .CertificationSection__Image {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .CertificationSection__BenefitsTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .CertificationSection__Benefits {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .CertificationSection__Benefit {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+    transition: box-shadow 0.4s;
+    width: 300px;
+    border-radius: 5px;
+  }
+
+  .CertificationSection__Benefit p {
+    text-align: center;
+    font-family: 'Josefin Sans';
+    font-size: 16px;
+    font-weight: 200;
+    margin: 0;
+  }
+
+  .CertificationSection__Benefit p strong {
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .CertificationSection__Benefit {
+      width: 250px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .CertificationSection {
+      padding: 50px 0px;
+    }
+
+    .CertificationSection__Benefit {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="CertificationSection pageWidth">
+  <h1>{{ section.settings.title | escape }}</h1>
+
+  <div class="CertificationSection__Image">
+    <img src="{{ section.settings.image | img_url: '2048x2048' }}" alt="Certification Image">
+  </div>
+
+  <p class="lightSmallTitle">{{ section.settings.description | escape }}</p>
+
+  <h3>{{ section.settings.benefits_title | escape }}</h3>
+
+  <div class="CertificationSection__Benefits">
+    {%- for block in section.blocks -%}
+      <div class="CertificationSection__Benefit">
+        <p>{{ block.settings.benefit_description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Certification Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "benefits_title",
+      "label": "Benefits Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit_block",
+      "name": "Benefit Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "benefit_description",
+          "label": "Benefit Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Certification Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

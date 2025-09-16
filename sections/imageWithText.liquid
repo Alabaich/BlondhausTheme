@@ -1,0 +1,200 @@
+<section
+  class="imageWithTextMainContainer"
+  style="background-image: url({{ section.settings.imageForBg | img_url: 'master' }});"
+>
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-left"
+        style="{% if section.settings.enableBackground %}background: rgba(0, 0, 0, 0.1);{% endif %}"
+      >
+        {% if section.settings.subtitle != blank %}
+          <p class="subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+        {% if section.settings.title != blank %}
+          <h2 class="title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="description">{{ section.settings.description }}</div>
+        {% endif %}
+        {% if section.settings.linkForButton and section.settings.textForButton %}
+          <a href="{{ section.settings.linkForButton }}" class="button">{{ section.settings.textForButton }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .imageWithTextMainContainer {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    color: white;
+    min-height: 550px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .imageWithTextMainContainer .row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 100px;
+  }
+
+  .imageWithTextMainContainer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .imageWithTextMainContainer .col-left {
+    max-width: 50%;
+    display: inline-flex;
+    padding: 25px 25px 25px 50px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .imageWithTextMainContainer .col-left * {
+    margin: 0;
+  }
+
+  .imageWithTextMainContainer .subtitle {
+    color: #fff;
+    text-align: right;
+    font-family: 'Josefin Sans';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .imageWithTextMainContainer .title {
+    color: #fff;
+    font-family: 'Josefin Sans';
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  .imageWithTextMainContainer .description p {
+    color: #fff;
+    font-family: 'Josefin Sans';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  .imageWithTextMainContainer .button {
+    display: flex;
+    padding: 10px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #2c2d2c;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #fff;
+    transition: all ease-in 200ms;
+  }
+
+  .imageWithTextMainContainer .button:hover {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+
+  @media screen and (max-width: 768px) {
+    .imageWithTextMainContainer {
+      padding: 25px 0;
+      align-items: start;
+      min-height: 800px;
+    }
+
+    .imageWithTextMainContainer .row {
+      padding-left: 25px;
+    }
+
+    .imageWithTextMainContainer .subtitle {
+      text-align: left;
+    }
+
+    .imageWithTextMainContainer .col-left {
+      max-width: 95%;
+      display: inline-flex;
+      padding: 25px 25px 25px 25px;
+      flex-direction: column;
+      align-items: start;
+      gap: 15px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Image With Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "imageForBg",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>This is a rich description with more details.</p>"
+    },
+    {
+      "type": "url",
+      "id": "linkForButton",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "textForButton",
+      "label": "Button Text",
+      "default": "Click Here"
+    },
+    {
+      "type": "checkbox",
+      "id": "enableBackground",
+      "label": "Enable Background Overlay",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image With Text",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

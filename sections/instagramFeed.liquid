@@ -1,0 +1,255 @@
+<style>
+  .instagramFeedContainer {
+    padding: 40px 0;
+  }
+
+  .SectionHeader--center {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .Section__SubHeading {
+    margin-bottom: 10px;
+  }
+
+  .Section__Heading {
+    margin-top: 0;
+  }
+
+  .ImageGallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .ImageGallery__Item {
+    width: calc(25% - 15px);
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .ImageGallery__Item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .ImageGallery__Item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .instagramFeedContainer {
+    width: 100%;
+    padding: 25px !important;
+  }
+  .instagramFeedContainer .allServicesIncluded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .instagramFeedContainer .allServicesIncluded .oneService {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .instagramFeedContainer .allServicesIncluded .oneService p {
+    max-width: 80%;
+    text-align: center;
+    color: gray;
+  }
+
+  @media screen and (max-height: 600px) {
+    .instagramFeedContainer {
+      padding: 15px !important;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .instagramFeedContainer {
+      padding: 25px 15% !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .ImageGallery {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .SectionHeader:not(:only-child) {
+      margin-bottom: 5px;
+    }
+
+    .ImageGallery__Item {
+      width: calc(51% - 10px);
+    }
+
+    .allServicesIncluded {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .allServicesIncluded .oneService {
+      width: 43%;
+    }
+
+    .allServicesIncluded .oneService h2 {
+      text-align: center;
+    }
+  }
+</style>
+
+<section
+  data-section-id="{{ section.id }}"
+  data-section-type="custom-images-carousel"
+  class="Section Section--spacingNormal instagramFeedContainer"
+>
+  {%- if section.settings.subheading != blank or section.settings.title != blank -%}
+    <div class="SectionHeader SectionHeader--center">
+      <div class="Container">
+        {%- if section.settings.subheading != blank -%}
+          <p class="regularText Section__SubHeading">{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.title != blank -%}
+          <h3 class="Section__Heading">{{ section.settings.title | escape }}</h3>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="ImageGallery">
+    <div class="ImageGallery__Item">
+      <a href="#" class="ImageGallery__Link">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0692/8927/9588/files/470175616_18475127386046298_1548874280785322333_n.jpg?v=1747845561"
+          alt="Photo 1"
+        >
+      </a>
+    </div>
+    <div class="ImageGallery__Item">
+      <a href="#" class="ImageGallery__Link">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0692/8927/9588/files/499239624_17968523753901648_1642913822499952312_n.jpg?v=1747845561"
+          alt="Photo 2"
+        >
+      </a>
+    </div>
+    <div class="ImageGallery__Item">
+      <a href="#" class="ImageGallery__Link">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0692/8927/9588/files/497925706_17968151192901648_5044017563576122975_n.jpg?v=1747845561"
+          alt="Photo 3"
+        >
+      </a>
+    </div>
+    <div class="ImageGallery__Item">
+      <a href="#" class="ImageGallery__Link">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0692/8927/9588/files/490653845_18500124331046298_1826835321486207461_n.jpg?v=1747845560"
+          alt="Photo 4"
+        >
+      </a>
+    </div>
+  </div>
+  <div class="allServicesIncluded">
+    <div class="oneService">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_52_2683)">
+        <path d="M0.75 5.25L12 9.75L23.25 5.25L12 0.75L0.75 5.25Z" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 23.25L0.75 18.75V5.25L12 9.75M12 23.25V9.75M12 23.25L23.25 18.75V5.25L12 9.75" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.1875 7.2749L6.9375 2.7749M20.6255 16.4999L18.7505 17.2499" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_52_2683">
+        <rect width="24" height="24" fill="white"/>
+        </clipPath>
+        </defs>
+      </svg>
+      <h2 class="regularText">EXPRESS DELIVERY</h2>
+      <p class="smallLabel">DHL express delivery worldwide</p>
+    </div>
+    <div class="oneService">
+      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.75 15.08L3.957 11.696L7.342 13.902" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.6316 2.50001C14.8906 2.48711 16.1396 2.72394 17.3065 3.19681C18.4734 3.66967 19.5349 4.36919 20.4298 5.2549C21.3246 6.14061 22.035 7.19495 22.5198 8.35692C23.0046 9.5189 23.2542 10.7655 23.2542 12.0245C23.2542 13.2836 23.0046 14.5301 22.5198 15.6921C22.035 16.8541 21.3246 17.9084 20.4298 18.7941C19.5349 19.6798 18.4734 20.3793 17.3065 20.8522C16.1396 21.3251 14.8906 21.5619 13.6316 21.549C12.3463 21.5483 11.074 21.2916 9.88896 20.7939C8.70392 20.2963 7.62986 19.5676 6.72943 18.6504C5.82901 17.7332 5.12025 16.6459 4.64452 15.4519C4.16879 14.2579 3.93561 12.9811 3.95858 11.696" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <h2 class="regularText">FREE RETURNS</h2>
+      <p class="smallLabel">Free return for 30 days for any order delivered in France</p>
+    </div>
+    <div class="oneService">
+      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_52_2698)">
+        <path d="M11.75 18.75C11.3522 18.75 10.9706 18.592 10.6893 18.3107C10.408 18.0294 10.25 17.6478 10.25 17.25V9.75C10.25 9.35218 10.408 8.97064 10.6893 8.68934C10.9706 8.40804 11.3522 8.25 11.75 8.25H22.25C22.6478 8.25 23.0294 8.40804 23.3107 8.68934C23.592 8.97064 23.75 9.35218 23.75 9.75V17.25C23.75 17.6478 23.592 18.0294 23.3107 18.3107C23.0294 18.592 22.6478 18.75 22.25 18.75H20.75V23.25L16.25 18.75H11.75Z" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7.25 12.75L4.25 15.75V11.25H2.75C2.35218 11.25 1.97064 11.092 1.68934 10.8107C1.40804 10.5294 1.25 10.1478 1.25 9.75V2.25C1.25 1.85218 1.40804 1.47064 1.68934 1.18934C1.97064 0.908035 2.35218 0.75 2.75 0.75H13.25C13.6478 0.75 14.0294 0.908035 14.3107 1.18934C14.592 1.47064 14.75 1.85218 14.75 2.25V5.25" stroke="#2C2D2C" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_52_2698">
+        <rect width="24" height="24" fill="white" transform="translate(0.5)"/>
+        </clipPath>
+        </defs>
+      </svg>
+
+      <h2 class="regularText">AVAILABLE CUSTOMER SERVICE</h2>
+      <p class="smallLabel">Available via Whatsapp on +1 (416) 474-5990</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "class": "shopify-section--bordered",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-heading",
+      "default": "Follow us"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Gallery"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Upload Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom Images Carousel",
+      "name": "Instagram Feed",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

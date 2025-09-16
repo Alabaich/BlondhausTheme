@@ -1,0 +1,80 @@
+<style>
+  .twoCollections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .twoCollections .upperTitle {
+    display: flex;
+    flex-direction: column;
+    text-align: {{ section.settings.upper_title_align }};
+    gap: 10px;
+  }
+
+  .twoCollections .upperTitle p {
+    margin: 0;
+    text-align: {{ section.settings.p_align }};
+  }
+</style>
+
+<div class="twoCollections pageWidth">
+  <div class="upperTitle">
+    <p class="smallLabel">{{ collection.description }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Description",
+  "settings": [
+    {
+      "type": "select",
+      "id": "upper_title_align",
+      "label": "Upper Title Align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "p_align",
+      "label": "P Align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Description",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
