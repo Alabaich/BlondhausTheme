@@ -173,12 +173,103 @@
         "show_course_duration": true,
         "subtitle": "Modules"
       }
+    },
+    "image_with_text_rBRyBE": {
+      "type": "imageWithText",
+      "name": "Image With Text",
+      "settings": {
+        "imageForBg": "shopify://shop_images/Frame_23.png",
+        "subtitle": "Instructor ANNA GORODNICHA",
+        "title": "",
+        "description": "<p>Luxury Blonde Educator | Private & Group Training AIRTOUCH | TOTAL BLONDE | CORRECTIONS  </p><p>With over 10 years of experience, ANNA GORODNICHA is a renowned stylist and educator. She has trained under prestigious names and owns Blondhaus. Her passion and dedication to hair care make her an invaluable resource for students. </p><p></p>",
+        "linkForButton": "",
+        "textForButton": "Click Here",
+        "enableBackground": true
+      }
+    },
+    "certification_T7rgBk": {
+      "type": "certification",
+      "name": "Certification Section",
+      "settings": {
+        "title": "Certification",
+        "image": "shopify://shop_images/lessonsPageImage3.webp",
+        "description": "Upon successful completion of the course, receive a certificate from Blondhaus, recognized for industry credibility and career advancement.",
+        "benefits_title": ""
+      }
+    },
+    "fake_grid_gallery_ja7hiB": {
+      "type": "fakeGridGallery",
+      "name": "Course Gallery",
+      "settings": {
+        "upper_title": "",
+        "title": "Course Gallery",
+        "subtitle": "Our Students Works",
+        "image_1": "shopify://shop_images/image_15_1x_9dcb3128-4d96-4b97-acf3-0076953b4afe.webp",
+        "image_2": "shopify://shop_images/image_12_1x_5f8eb9ea-1ad0-410b-953a-6bf4c756ef35.webp",
+        "image_3": "shopify://shop_images/23123.webp",
+        "image_4": "shopify://shop_images/image_8_1x_ddaed17a-e731-43b3-9bf9-dffa5e689af3.webp",
+        "image_5": "shopify://shop_images/image_16_1x_610616c8-1dfd-4707-b4af-973d826c74fc.webp",
+        "image_6": "shopify://shop_images/image_14_1x_f00d3756-7186-4a55-a5cc-99891db572ba.webp",
+        "image_7": "shopify://shop_images/21354234.webp",
+        "image_8": "shopify://shop_images/image_2_1x_f7a2a87a-bd0d-4ed2-b1a6-921a69b650a3.webp",
+        "image_9": "shopify://shop_images/image_13_1x_da8b3eb4-f579-4c4b-ba88-4b3841ff390f.webp"
+      }
+    },
+    "comments_slider_AXMFX6": {
+      "type": "comments-slider",
+      "blocks": {
+        "comment_QWaq6K": {
+          "type": "comment",
+          "settings": {
+            "name": "Emma L.",
+            "text": "I recently had an AirTouch coloring session, and I am beyond happy with the results! I wanted something soft, natural, and low-maintenance, and this technique delivered exactly that. Unlike traditional balayage or highlights, the stylist used a blow-drying method to separate the hair, which made the blend completely seamless—no harsh lines or streaks!",
+            "image": "shopify://shop_images/commentPFPImage.webp"
+          }
+        }
+      },
+      "block_order": [
+        "comment_QWaq6K"
+      ],
+      "name": "Comments Slider",
+      "settings": {
+        "title": "What our customers say",
+        "subtitle": "Real reviews from our customers"
+      }
+    },
+    "contact_us_form_686rL6": {
+      "type": "contactUsForm",
+      "blocks": {
+        "text_tcGiiC": {
+          "type": "text",
+          "settings": {
+            "title": "Your Phone",
+            "use_long_text": false,
+            "is_required": false
+          }
+        }
+      },
+      "block_order": [
+        "text_tcGiiC"
+      ],
+      "disabled": true,
+      "name": "Custom Contact Form",
+      "settings": {
+        "upperTitle": "We'd Love to Hear from You",
+        "title": "Get in Touch",
+        "subtitle": "Subtitle",
+        "textUnderForm": "We'd Love to Hear from You"
+      }
     }
   },
   "order": [
     "main",
     "hero_slider_MBJYU3",
     "info_for_customers_i9YJUy",
-    "course_steps_MMUX7P"
+    "course_steps_MMUX7P",
+    "image_with_text_rBRyBE",
+    "certification_T7rgBk",
+    "fake_grid_gallery_ja7hiB",
+    "comments_slider_AXMFX6",
+    "contact_us_form_686rL6"
   ]
 }
