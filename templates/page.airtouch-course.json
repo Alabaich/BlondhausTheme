@@ -15,9 +15,170 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "hero_slider_MBJYU3": {
+      "type": "heroSlider",
+      "blocks": {
+        "slide_CdfcHn": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "slide_image": "shopify://shop_images/AirTouchCourseImage.webp",
+            "video_url": "",
+            "uppertitle": "5 weeks",
+            "title": "Airtouch Technology Course",
+            "button_url": "shopify://collections/all",
+            "button_text": "Apply To Course"
+          }
+        }
+      },
+      "block_order": [
+        "slide_CdfcHn"
+      ],
+      "name": "Hero Slider",
+      "settings": {}
+    },
+    "info_for_customers_i9YJUy": {
+      "type": "infoForCustomers",
+      "blocks": {
+        "info_block_aLd7U6": {
+          "type": "info_block",
+          "settings": {
+            "icon_svg_code": "",
+            "title": "Master the innovative Airtouch technique for seamless color transitions",
+            "description": ""
+          }
+        },
+        "info_block_9kJPYN": {
+          "type": "info_block",
+          "settings": {
+            "icon_svg_code": "",
+            "title": "Learn from industry experts with hands-on experience",
+            "description": ""
+          }
+        },
+        "info_block_wWeiEV": {
+          "type": "info_block",
+          "settings": {
+            "icon_svg_code": "",
+            "title": "Develop skills to create natural-looking highlights and blends",
+            "description": ""
+          }
+        },
+        "info_block_kPt8wG": {
+          "type": "info_block",
+          "settings": {
+            "icon_svg_code": "",
+            "title": "Stand out in the industry with advanced coloring techniques",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "info_block_aLd7U6",
+        "info_block_9kJPYN",
+        "info_block_wWeiEV",
+        "info_block_kPt8wG"
+      ],
+      "name": "Info for Customer Section",
+      "settings": {
+        "title1": "",
+        "title2": "Airtouch Technology Course",
+        "title3": "Learn the revolutionary Airtouch technique for hair coloring. This course covers everything from the basics to advanced applications, ensuring seamless blends and natural-looking highlights."
+      }
+    },
+    "course_steps_MMUX7P": {
+      "type": "courseSteps",
+      "blocks": {
+        "module_UYjPga": {
+          "type": "module",
+          "settings": {
+            "module_title": "1. Introduction to Airtouch Technology",
+            "module_description": "Understand the basics and benefits of Airtouch coloring."
+          }
+        },
+        "arrow_bFcWBN": {
+          "type": "arrow",
+          "settings": {}
+        },
+        "module_VU9M7x": {
+          "type": "module",
+          "settings": {
+            "module_title": "2. Tools and Techniques",
+            "module_description": "Learn about the tools required and the step-by-step process of Airtouch."
+          }
+        },
+        "arrow_WwXy4n": {
+          "type": "arrow",
+          "settings": {}
+        },
+        "module_fAnVEn": {
+          "type": "module",
+          "settings": {
+            "module_title": "3. Application Methods",
+            "module_description": "Practice different application methods for various hair types and styles."
+          }
+        },
+        "arrow_xRyLYB": {
+          "type": "arrow",
+          "settings": {}
+        },
+        "module_9UGrUP": {
+          "type": "module",
+          "settings": {
+            "module_title": "4. Color Blending and Transitions",
+            "module_description": "Master the art of seamless color blending and smooth transitions."
+          }
+        },
+        "arrow_djFnqU": {
+          "type": "arrow",
+          "settings": {}
+        },
+        "module_aL8WEC": {
+          "type": "module",
+          "settings": {
+            "module_title": "5. Client Consultation and Customization",
+            "module_description": "Master the art of seamless color blending and smooth transitions."
+          }
+        },
+        "arrow_6MTLER": {
+          "type": "arrow",
+          "settings": {}
+        },
+        "module_7hqJDc": {
+          "type": "module",
+          "settings": {
+            "module_title": "6. Practical Sessions and Assessments",
+            "module_description": "Apply your skills on live models and receive feedback from your instructor."
+          }
+        }
+      },
+      "block_order": [
+        "module_UYjPga",
+        "arrow_bFcWBN",
+        "module_VU9M7x",
+        "arrow_WwXy4n",
+        "module_fAnVEn",
+        "arrow_xRyLYB",
+        "module_9UGrUP",
+        "arrow_djFnqU",
+        "module_aL8WEC",
+        "arrow_6MTLER",
+        "module_7hqJDc"
+      ],
+      "name": "Course Steps",
+      "settings": {
+        "course_title": "Airtouch Technology Course",
+        "course_duration": "5 weeks",
+        "show_course_duration": true,
+        "subtitle": "Modules"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "hero_slider_MBJYU3",
+    "info_for_customers_i9YJUy",
+    "course_steps_MMUX7P"
   ]
 }
