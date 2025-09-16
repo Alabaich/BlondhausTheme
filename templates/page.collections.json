@@ -17,64 +17,43 @@
         "padding_bottom": 28
       }
     },
-    "image_with_text_overlay_RUUzLd": {
-      "type": "image-with-text-overlay",
-      "name": "Image with text (overlay)",
+    "collection_list_9Y6xiP": {
+      "type": "collectionList",
+      "blocks": {
+        "category_collection_BmfmiU": {
+          "type": "category_collection",
+          "settings": {
+            "collection": "absolut-repair"
+          }
+        },
+        "category_collection_aBjm4w": {
+          "type": "category_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "category_collection_Kp3YaA": {
+          "type": "category_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_collection_BmfmiU",
+        "category_collection_aBjm4w",
+        "category_collection_Kp3YaA"
+      ],
+      "disabled": true,
+      "name": "Collection List",
       "settings": {
-        "image": "shopify://shop_images/AboutUsmainImage.webp",
-        "text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 30,
-        "subheading": "OUR COMMITMENTS",
-        "title": "FROM DAY ONE",
-        "content": ""
-      }
-    },
-    "switch_side_image_TGcxad": {
-      "type": "switchSideImage",
-      "name": "Switch Side Image Section",
-      "settings": {
-        "image_position": "right",
-        "image": "shopify://shop_images/abousUsswitchSideImage.webp",
-        "text_align": "right",
-        "heading": "By Blond Lovers, for Blond Lovers",
-        "subtitle": "Our mission is to deliver the best hair care for bleached hair and expert blonde coloring services that protect, nurture, and celebrate your unique style. Our innovative range of blonde hair care products is thoughtfully crafted to rejuvenate and illuminate every strand, ensuring your locks remain as vibrant as your spirit. Because blondes deserve the best. And at Blondhaus, we make sure they get it.",
-        "description": "",
-        "bottom_text": ""
-      }
-    },
-    "switch_side_image_mMiRFE": {
-      "type": "switchSideImage",
-      "name": "Switch Side Image Section",
-      "settings": {
-        "image_position": "left",
-        "image": "shopify://shop_images/image_2_1x_f7a2a87a-bd0d-4ed2-b1a6-921a69b650a3.webp",
-        "text_align": "left",
-        "heading": "The Blondhaus Experience",
-        "subtitle": "At Blondhaus, expertise meets passion to create flawless, luminous color while keeping hair strong and healthy. Our thoughtfully designed hair care routine makes it easy to maintain vibrant, nourished hair you’ll love—no matter your hair type or texture. Every Blondhaus transformation is crafted to enhance your natural beauty while preserving the integrity of your hair.",
-        "description": "",
-        "bottom_text": ""
-      }
-    },
-    "image_with_text_dQ3HKK": {
-      "type": "imageWithText",
-      "name": "Image With Text",
-      "settings": {
-        "imageForBg": "shopify://shop_images/aboutUsImage2.webp",
-        "subtitle": "",
-        "title": "",
-        "description": "<p>“OUR AIM IS TO OFFER YOU WELL-THOUGHT-OUT, HIGH-QUALITY HAIR CARE PRODUCTS AT A FAIR PRICE, ALL YEAR ROUND.”</p>",
-        "linkForButton": "",
-        "textForButton": "Click Here",
-        "enableBackground": false
+        "title_label": "DISCOVER OUR",
+        "title": "COLLECTIONS"
       }
     }
   },
   "order": [
     "main",
-    "image_with_text_overlay_RUUzLd",
-    "switch_side_image_TGcxad",
-    "switch_side_image_mMiRFE",
-    "image_with_text_dQ3HKK"
+    "collection_list_9Y6xiP"
   ]
 }
