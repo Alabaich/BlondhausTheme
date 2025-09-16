@@ -11,13 +11,192 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "hero_slider_VFhjdK": {
+      "type": "heroSlider",
+      "blocks": {
+        "slide_eq7ERe": {
+          "type": "slide",
+          "settings": {
+            "media_type": "image",
+            "slide_image": "shopify://shop_images/lessonsIPageImage.webp",
+            "video_url": "",
+            "uppertitle": "Experience the Art of Exceptional Hair Care with Our Expert Services",
+            "title": "Transform Your Hair, Transform Your Life",
+            "button_url": "shopify://collections/all",
+            "button_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_eq7ERe"
+      ],
+      "name": "Hero Slider",
+      "settings": {}
+    },
+    "icons_rich_text_CaeJbc": {
+      "type": "iconsRichText",
+      "name": "Icons Rich Text",
+      "settings": {
+        "upper_title": "",
+        "title": "Our Services",
+        "subtitle": "At BlondHaus, we believe that your hair is a canvas and our stylists are the artists. Our comprehensive range of services is designed to cater to all your hair care needs, ensuring you leave our salon looking and feeling your best. Whether you're seeking a chic haircut, vibrant color, stunning extensions, or nourishing treatments, our skilled team is dedicated to delivering top-notch results tailored to your unique style and preferences. We use the latest techniques and high-quality products to provide you with a luxurious and transformative experience."
+      }
+    },
+    "services_with_title_xHexhM": {
+      "type": "servicesWithTitle",
+      "blocks": {
+        "service_image_DVqNVr": {
+          "type": "service_image",
+          "settings": {
+            "image": "shopify://shop_images/service1.webp",
+            "title": "Coloring",
+            "regularText": "From $150",
+            "link": ""
+          }
+        },
+        "service_image_Cyh6Wr": {
+          "type": "service_image",
+          "settings": {
+            "image": "shopify://shop_images/service2.webp",
+            "title": "Air Touch",
+            "regularText": "From $400",
+            "link": ""
+          }
+        },
+        "service_image_NRcnwb": {
+          "type": "service_image",
+          "settings": {
+            "image": "shopify://shop_images/service3.webp",
+            "title": "Haircuts & Styling",
+            "regularText": "From $250",
+            "link": ""
+          }
+        },
+        "service_image_zjbQe7": {
+          "type": "service_image",
+          "settings": {
+            "image": "shopify://shop_images/service4.webp",
+            "title": "Extensions & Treatment",
+            "regularText": "From $50",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_image_DVqNVr",
+        "service_image_Cyh6Wr",
+        "service_image_NRcnwb",
+        "service_image_zjbQe7"
+      ],
+      "name": "Services Images Section",
+      "settings": {}
+    },
+    "switch_side_image_AtkBC6": {
+      "type": "switchSideImage",
+      "name": "Switch Side Image Section",
+      "settings": {
+        "image_position": "right",
+        "image": "shopify://shop_images/lessonsPageImage2.webp",
+        "text_align": "left",
+        "heading": "Meet ANNA GORODNICHA",
+        "subtitle": "",
+        "description": "Meet ANNA GORODNICHA, our master stylist with over 15 years of experience in the hair care industry. Emily is renowned for her creative vision, precision, and ability to transform hair into stunning works of art. Trained in the latest techniques and trends, she is dedicated to providing each client with a personalized experience that leaves them feeling confident and beautiful.",
+        "bottom_text": ""
+      }
+    },
+    "custom_section_blocks_VjtK4R": {
+      "type": "customSectionBlocks",
+      "blocks": {
+        "block_XaeRVM": {
+          "type": "block",
+          "settings": {
+            "block_title": "Consultation",
+            "block_subtitle": "We begin with a personalized consultation to understand your hair goals and preferences, ensuring a tailored and satisfying experience."
+          }
+        },
+        "block_BfLG7g": {
+          "type": "block",
+          "settings": {
+            "block_title": "Customized Plan",
+            "block_subtitle": "Based on the consultation, we create a customized plan, outlining the steps and products we'll use to achieve your desired look."
+          }
+        },
+        "block_hkMMpw": {
+          "type": "block",
+          "settings": {
+            "block_title": "Expert Execution",
+            "block_subtitle": "Our skilled stylists use advanced techniques and high-quality products to deliver precise and beautiful results."
+          }
+        },
+        "block_gVnJcQ": {
+          "type": "block",
+          "settings": {
+            "block_title": "Final Touches",
+            "block_subtitle": "We perfect your look with precision detailing and styling, providing tips and product recommendations for at-home care."
+          }
+        },
+        "block_zazykx": {
+          "type": "block",
+          "settings": {
+            "block_title": "Aftercare Guidance",
+            "block_subtitle": "Receive personalized aftercare instructions to maintain the health and appearance of your hair between visits."
+          }
+        },
+        "block_yYxe7P": {
+          "type": "block",
+          "settings": {
+            "block_title": "Follow-Up",
+            "block_subtitle": "We follow up to ensure your complete satisfaction, offering ongoing support and addressing any questions or concerns."
+          }
+        }
+      },
+      "block_order": [
+        "block_XaeRVM",
+        "block_BfLG7g",
+        "block_hkMMpw",
+        "block_gVnJcQ",
+        "block_zazykx",
+        "block_yYxe7P"
+      ],
+      "name": "Custom Section",
+      "settings": {
+        "upper_title": "",
+        "title": "Our Process",
+        "subtitle": "At Blondhaus, we believe that achieving your perfect look involves more than just great haircuts and treatments. It's about the entire experience, from the moment you walk through our doors to the final reveal of your stunning new style. Here’s a step-by-step look at our process to ensure you receive the highest quality service and results:"
+      }
+    },
+    "fake_grid_gallery_c4hzzF": {
+      "type": "fakeGridGallery",
+      "name": "Course Gallery",
+      "settings": {
+        "upper_title": "",
+        "title": "Works Gallery",
+        "subtitle": "Our Students Works",
+        "image_1": "shopify://shop_images/2.png",
+        "image_2": "shopify://shop_images/3.png",
+        "image_3": "shopify://shop_images/4.png",
+        "image_4": "shopify://shop_images/5.png",
+        "image_5": "shopify://shop_images/6.png",
+        "image_6": "shopify://shop_images/7.png",
+        "image_7": "shopify://shop_images/8.png",
+        "image_8": "shopify://shop_images/d17913942e05c09bee6d72094508edcf936cf82b.png",
+        "image_9": "shopify://shop_images/image_15_1x_9dcb3128-4d96-4b97-acf3-0076953b4afe.webp"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "hero_slider_VFhjdK",
+    "icons_rich_text_CaeJbc",
+    "services_with_title_xHexhM",
+    "switch_side_image_AtkBC6",
+    "custom_section_blocks_VjtK4R",
+    "fake_grid_gallery_c4hzzF"
   ]
 }
