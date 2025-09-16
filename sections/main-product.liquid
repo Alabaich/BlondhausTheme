@@ -1,5 +1,10 @@
 {%- liquid
   assign product_media = product.media | default: product.featured_media
+  assign short_description = product.description | strip_html | truncate: 200
+  assign is_long_description = false
+  if product.description.size > 200
+    assign is_long_description = true
+  endif
 -%}
 
 <style>
@@ -64,6 +69,13 @@
   }
   .product-description {
     line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .read-more-link {
+    color: #888;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9em;
   }
   .product-details-container {
     display: flex;
@@ -238,6 +250,17 @@
     margin: 0;
     line-height: 1.6;
   }
+  .accordion-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+  #description-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+  }
 </style>
 
 <div class="main-product-page pageWidth">
@@ -276,7 +299,10 @@
       <div class="divider"></div>
 
       <div class="product-description">
-        {{ product.description }}
+        {{ short_description }}
+        {% if is_long_description %}
+          <div class="read-more-link" data-target="description-content">Read more</div>
+        {% endif %}
       </div>
 
       {% form 'product', product, class: 'product-form' %}
@@ -291,6 +317,19 @@
   </div>
 
   <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header" data-target="description-content">
+        <span>DESCRIPTION</span>
+        <div class="accordion-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 7.99805H8V13.998H6V7.99805H0V5.99805H6V-0.00195312H8V5.99805H14V7.99805Z" fill="#2C2D2C" fill-opacity="0.7"/>
+          </svg>
+        </div>
+      </div>
+      <div class="accordion-content" id="description-content">
+        {{ product.description }}
+      </div>
+    </div>
     <div class="accordion-item">
       <div class="accordion-header" data-target="details-content">
         <span>PRODUCT DETAILS</span>
@@ -349,6 +388,7 @@
     const closeButton = document.querySelector('.fullscreen-close');
     const prevButton = document.querySelector('.fullscreen-nav-button.prev');
     const nextButton = document.querySelector('.fullscreen-nav-button.next');
+    const readMoreLink = document.querySelector('.read-more-link');
     let currentIndex = 0;
 
     const allImages = Array.from(thumbnails).map((thumb) => thumb.getAttribute('data-full-image-url'));
@@ -372,6 +412,19 @@
       if (index >= 0 && index < allImages.length) {
         fullscreenImage.src = allImages[index];
         currentIndex = index;
+      }
+    }
+
+    function scrollToAccordionItem(targetId) {
+      const accordionHeader = document.querySelector(`.accordion-header[data-target="${targetId}"]`);
+      if (accordionHeader) {
+        const content = document.getElementById(targetId);
+        const iconContainer = accordionHeader.querySelector('.accordion-icon');
+
+        content.style.maxHeight = content.scrollHeight + 'px';
+        iconContainer.classList.add('rotated');
+
+        accordionHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
@@ -399,6 +452,12 @@
         if (event.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
           closeFullscreen();
         }
+      });
+    }
+
+    if (readMoreLink) {
+      readMoreLink.addEventListener('click', function () {
+        scrollToAccordionItem(this.getAttribute('data-target'));
       });
     }
 
