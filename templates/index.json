@@ -57,11 +57,57 @@
         "text": "Professional haircare at home",
         "collection": "blondifier"
       }
+    },
+    "icons_rich_text_UaWckG": {
+      "type": "iconsRichText",
+      "blocks": {
+        "image_6BAHML": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/biosilkLogo.webp",
+            "linkTo": ""
+          }
+        },
+        "image_GiT8pw": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/lorealLogo.webp",
+            "linkTo": ""
+          }
+        },
+        "image_QYhTMK": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/WellaLogo.webp",
+            "linkTo": ""
+          }
+        },
+        "image_irz6nb": {
+          "type": "image",
+          "settings": {
+            "icon": "shopify://shop_images/LanzaLogo.webp",
+            "linkTo": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_6BAHML",
+        "image_GiT8pw",
+        "image_QYhTMK",
+        "image_irz6nb"
+      ],
+      "name": "Icons Rich Text",
+      "settings": {
+        "upper_title": "",
+        "title": "Premium Hair Care Brands",
+        "subtitle": "Handpicked for quality and performance, our curated selection of hair care brands offers innovative solutions for your hair needs. Trust in excellence."
+      }
     }
   },
   "order": [
     "hero_slider_n4bWwT",
     "collections_drop_produts_xa4j9N",
-    "image_promotionollection_NctBNQ"
+    "image_promotionollection_NctBNQ",
+    "icons_rich_text_UaWckG"
   ]
 }
