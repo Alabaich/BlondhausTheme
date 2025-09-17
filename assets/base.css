@@ -4032,3 +4032,21 @@ body.dark-theme:not(.has-hero-slider) .header__heading-logo {
 body:not(.dark-theme):not(.has-hero-slider) .header__heading-logo {
   filter: none !important;
 }
+
+body.dark-theme .facet-filters__field .select__select,
+body.dark-theme .facets__summary .icon-caret,
+body.dark-theme .facets__summary,
+body.dark-theme .facet-checkbox__text,
+body.dark-theme .facets__summary-label {
+  color: #fff !important;
+}
+
+body.dark-theme .predictive-search__heading,
+body.dark-theme .predictive-search__item-heading {
+  color: #2c2d2c !important;
+}
+
+body.dark-theme span.active-facets__button-inner {
+  color: #2c2d2c;
+  background-color: #fff;
+}
