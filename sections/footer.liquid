@@ -311,6 +311,18 @@
   <div class="footer-bottom">
     <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
   </div>
+  {% if shop.policies %}
+    <ul>
+      {% for policy in shop.policies %}
+        <li>
+          <small>
+          <a href="{{ policy.url }}">{{ policy.title }}</a>
+          </small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
 </footer>
 
 {% schema %}
