@@ -4050,3 +4050,7 @@ body.dark-theme span.active-facets__button-inner {
   color: #2c2d2c;
   background-color: #fff;
 }
+
+.shopify-policy__container{
+  margin-top: 100px;
+}
