@@ -320,6 +320,11 @@
     {% endfor %}
   </ul>
 {% endif %}</div>
+
+{% if shop.refund_policy %}
+  <a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>
+{% endif %}
+
   </div>
 </footer>
 
