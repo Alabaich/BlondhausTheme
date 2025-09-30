@@ -312,7 +312,7 @@
     <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
   </div>
   {% if shop.policies %}
-    <ul>
+    <ul style="list-style: none; diplay: flex; gap:10px;">
       {% for policy in shop.policies %}
         <li>
           <small>
