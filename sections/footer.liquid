@@ -206,10 +206,11 @@
   <div class="image-container">
     {% if section.settings.footer_image != blank %}
       <img
-        src="{{ section.settings.footer_image | img_url: 'master' }}"
+        src="{{ section.settings.footer_image | image_url }}"
         alt="{{ section.settings.footer_image.alt | default: 'Image description' }}"
         style="max-width: 100%; height: auto;"
-        
+        width="auto"
+        height="auto"
       >
     {% endif %}
   </div>
@@ -308,7 +309,7 @@
   </div>
 
   <div class="footer-bottom">
-    <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights resrved</small>
+    <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
   </div>
 </footer>
 
