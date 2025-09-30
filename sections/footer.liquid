@@ -209,6 +209,7 @@
         src="{{ section.settings.footer_image | img_url: 'master' }}"
         alt="{{ section.settings.footer_image.alt | default: 'Image description' }}"
         style="max-width: 100%; height: auto;"
+        
       >
     {% endif %}
   </div>
@@ -304,7 +305,12 @@
         {% endcase %}
       {% endfor %}
     </div>
-    <div>{% if shop.policies %}
+    <div>
+  </div>
+
+  <div class="footer-bottom">
+    <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
+    {% if shop.policies %}
   <ul>
     <h1>HERE</h1>
     {% for policy in shop.policies %}
@@ -314,10 +320,6 @@
     {% endfor %}
   </ul>
 {% endif %}</div>
-  </div>
-
-  <div class="footer-bottom">
-    <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
   </div>
 </footer>
 
