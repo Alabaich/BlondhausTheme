@@ -304,6 +304,15 @@
         {% endcase %}
       {% endfor %}
     </div>
+    <div>{% if shop.policies %}
+  <ul>
+    {% for policy in shop.policies %}
+      <li>
+        <a href="{{ policy.url }}">{{ policy.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}</div>
   </div>
 
   <div class="footer-bottom">
