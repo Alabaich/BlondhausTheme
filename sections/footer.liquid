@@ -311,14 +311,6 @@
   <div class="footer-bottom">
     <small>&copy; {{ 'now' | date: '%Y' }} - BLONDHAUS - All rights reserved</small>
     {% if shop.policies %}
-  <ul>
-    <h1>HERE</h1>
-    {% for policy in shop.policies %}
-      <li>
-        <a href="{{ policy.url }}">{{ policy.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
 {% endif %}</div>
 
 {% if shop.refund_policy %}
