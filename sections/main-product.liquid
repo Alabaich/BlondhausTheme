@@ -262,6 +262,13 @@
     height: auto;
     margin: 15px 0;
   }
+
+  @media (max-width: 768px) {
+  .product-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
 </style>
 
 <div class="main-product-page pageWidth">
@@ -356,7 +363,7 @@
       <div class="accordion-content" id="shipping-content">
         <p>
           Shipping costs and delivery times vary depending on your location. Returns are accepted within 30 days of
-          purchase. Please see our <a href="https://blondhaus.ca/policies/shipping-policy">full policy</a> for more details.
+          purchase. Please see our full policy for more details.
         </p>
       </div>
     </div>
