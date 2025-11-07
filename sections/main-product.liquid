@@ -343,7 +343,12 @@
 {%- endcomment -%}
 **{%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}**
 **{%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}**
-
+<pre style="background: #f0f0f0; padding: 10px; border: 1px solid #ccc; font-family: monospace;">
+    {%- for option in product.options_with_values -%}
+      Option Name: {{ option.name }}
+      Option Values: {{ option.values | json }}
+    {%- endfor -%}
+  </pre>
 
 {%- comment -%} We add the id: product_form_id to the form tag {%- endcomment -%}
 {% form 'product', product, class: 'product-form', id: product_form_id %}
