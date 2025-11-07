@@ -327,84 +327,57 @@
 
       
 {%- comment -%}
-  START: CORRECTED FORM SECTION
+  START: NATIVE THEME BLOCKS
+  We loop through the section blocks defined in the schema below.
+  This is the correct way to render the form so the theme's JS can find it.
 {%- endcomment -%}
-{%- assign product_form_id = 'main-product-form-' | append: section.id -%}
-{%- assign full_product_object = product -%}
-
-{%- comment -%}
-  START: DEFINE SETTINGS
-  We define our picker type and swatch shape here.
-{%- endcomment -%}
-{%- assign custom_picker_type = 'button' -%}
-{%- assign custom_swatch_shape = 'circle' -%}
-{%- comment -%}
-  END: DEFINE SETTINGS
-{%- endcomment -%}
-
-
-<product-form class="product-form" data-section-id="{{ section.id }}">
-  {% form 'product', product, class: 'product-form-inner', id: product_form_id, novalidate: 'novalidate' %}
-    
-    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
-
-    <script type="application/json" id="ProductJson-{{ section.id }}">
-      {{ product | json }}
-    </script>
-
-    {%- comment -%}
-      NOW, we render the variant picker INSIDE the <product-form>
-      and <form> tags.
-    {%- endcomment -%}
-    {%- unless product.has_only_default_variant -%}
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'variant_picker' -%}
       {%- comment -%}
-        START: PASSING SETTINGS DIRECTLY
-        We pass our custom variables directly to the snippet
-        to avoid any 'block' variable scope issues.
+        This is the original form code from your first message.
+        It works now because 'block' is a real section block
+        with settings defined in the schema.
       {%- endcomment -%}
-      {% render 'product-variant-picker',
-        product: full_product_object,
-        product_form_id: product_form_id,
-        custom_picker_type: custom_picker_type,
-        custom_swatch_shape: custom_swatch_shape
-      %}
-    {%- endunless -%}
+      {%- assign product_form_id = 'main-product-form-' | append: section.id -%}
+      {%- assign full_product_object = product -%}
 
-    {%- comment -%}
-      REPLACED 'buy-buttons' snippet.
-    {%- endcomment -%}
-    <div>
-      <div class="product-form__error-message-wrapper" role="alert" hidden>
-        <span class="svg-wrapper">
-          <svg class="icon icon-error" viewBox="0 0 13 13"><circle cx="6.5" cy="6.5" r="5.5" stroke="#fff" stroke-width="2"></circle><circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width=".7"></circle><path fill="#fff" d="m5.874 3.528.1 4.044h1.053l.1-4.044zm.627 6.133c.38 0 .68-.288.68-.656s-.3-.656-.68-.656-.681.288-.681.656.3.656.68.656"></path><path fill="#fff" stroke="#EB001B" stroke-width=".7" d="M5.874 3.178h-.359l.01.359.1 4.044.008.341h1.736l.008-.341.1-4.044.01-.359H5.873Zm.627 6.833c.56 0 1.03-.432 1.03-1.006s-.47-1.006-1.03-1.006-1.031.432-1.031 1.006.47 1.006 1.03 1.006Z"></path></svg>
-        </span>
-        <span class="product-form__error-message"></span>
-      </div>
+      {%- comment -%}
+        The <product-form> element is part of the Dawn theme JS.
+        It needs the data-section-id to find the product JSON.
+      {%- endcomment -%}
+      <product-form class="product-form" data-section-id="{{ section.id }}">
+        <script type="application/json" id="ProductJson-{{ section.id }}">
+          {{ product | json }}
+        </script>
+        
+        {% form 'product', product, class: 'product-form', id: product_form_id %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
 
-      <div class="product-form__buttons">
-        <button
-          type="submit"
-          name="add"
-          class="product-form__submit button button--full-width button--primary"
-        >
-          <span>Add to cart</span>
-          <div class="loading__spinner hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66"><circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle></svg>
-          </div>
-        </button>
-      </div>
-    </div>
+          {%- unless product.has_only_default_variant -%}
+            {% render 'product-variant-picker',
+              product: full_product_object,
+              block: block,
+              product_form_id: product_form_id
+            %}
+          {%- endunless -%}
 
-  {% endform %}
-</product-form>
+          {% render 'buy-buttons', product: full_product_object, product_form_id: product_form_id %}
+        {% endform %}
+      </product-form>
 
+      {%- comment -%}
+        This script is for the <product-form> element (submit logic)
+      {%- endcomment -%}
+      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+    {%- comment -%} You can add other block types here like @app, etc. {%- endcomment -%}
+
+  {%- endcase -%}
+{%- endfor -%}
 {%- comment -%}
-  END: CORRECTED FORM SECTION
+  END: NATIVE THEME BLOCKS
 {%- endcomment -%}
-
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-
       {% comment %} {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
@@ -579,3 +552,58 @@
     });
   });
 </script>
+
+
+{%- comment -%}
+  START: ADDED SCHEMA
+  This defines the settings for this section, including
+  the 'Variant Picker' block you suggested.
+{%- endcomment -%}
+{% schema %}
+{
+  "name": "Main Product",
+  "tag": "section",
+  "class": "product-section",
+  "blocks": [
+    {
+      "type": "variant_picker",
+      "name": "Variant Picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "label": "Picker Style",
+          "options": [
+            { "value": "button", "label": "Button" },
+            { "value": "dropdown", "label": "Dropdown" },
+            { "value": "swatch", "label": "Color Swatch" }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "select",
+          "id": "swatch_shape",
+          "label": "Swatch Shape",
+          "options": [
+            { "value": "circle", "label": "Circle" },
+            { "value": "square", "label": "Square" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "circle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Product",
+      "blocks": [
+        {
+          "type": "variant_picker"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
