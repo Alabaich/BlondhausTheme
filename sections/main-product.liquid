@@ -326,15 +326,24 @@
   We need to define a form ID and a "mock" block object
   because the 'product-variant-picker' snippet expects them.
 {%- endcomment -%}
-{%- liquid
-  assign product_form_id = 'main-product-form'
+{%- comment -%}
+  We need to define a form ID and a "mock" block object
+  because the 'product-variant-picker' snippet expects them.
+{%- endcomment -%}
 
-  comment
-    YOU CAN CUSTOMIZE THIS:
-    - 'picker_type': 'button', 'dropdown', or 'swatch'
-    - 'swatch_shape': 'circle', 'square', or 'none'
-  endcomment
--%}
+{%- comment -%}
+  These lines replace the 'liquid' block from before
+{%- endcomment -%}
+**{%- assign product_form_id = 'main-product-form' -%}**
+
+{%- comment -%}
+  YOU CAN CUSTOMIZE THIS:
+  - 'picker_type': 'button', 'dropdown', or 'swatch'
+  - 'swatch_shape': 'circle', 'square', or 'none'
+{%- endcomment -%}
+**{%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}**
+**{%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}**
+
 
 {%- comment -%} We add the id: product_form_id to the form tag {%- endcomment -%}
 {% form 'product', product, class: 'product-form', id: product_form_id %}
