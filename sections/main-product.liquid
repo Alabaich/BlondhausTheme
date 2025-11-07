@@ -398,6 +398,8 @@
 {%- endcomment -%}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+<h1>Here</h1>
       {% comment %} {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
