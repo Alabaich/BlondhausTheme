@@ -309,7 +309,12 @@
         <h1 class="product-title smallTitle">{{ product.title }}</h1>
         <div class="product-price-and-rating">
           <div class="product-price">
-            <span class="price-display lightSmallTitle">{{ product.price | money }}</span>
+                              {%- render 'price',
+                    product: product,
+                    use_variant: true,
+                    show_badges: true,
+                    price_class: 'price--large'
+                  -%}
           </div>
         </div>
       </div>
@@ -325,7 +330,13 @@
 
 
 
-      
+        {% unless product.has_only_default_variant %}
+    {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+    {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+  {% endunless %}
+    <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- comment -%}
   START: NATIVE THEME BLOCKS
   We loop through the section blocks defined in the schema below.
