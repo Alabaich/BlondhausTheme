@@ -322,14 +322,51 @@
         {% endif %}
       </div>
 
-      {% form 'product', product, class: 'product-form' %}
+      {%- comment -%}
+  We need to define a form ID and a "mock" block object
+  because the 'product-variant-picker' snippet expects them.
+{%- endcomment -%}
+{%- liquid
+  assign product_form_id = 'main-product-form'
+
+  comment
+    YOU CAN CUSTOMIZE THIS:
+    - 'picker_type': 'button', 'dropdown', or 'swatch'
+    - 'swatch_shape': 'circle', 'square', or 'none'
+  endcomment
+-%}
+
+{%- comment -%} We add the id: product_form_id to the form tag {%- endcomment -%}
+{% form 'product', product, class: 'product-form', id: product_form_id %}
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+  {%- comment -%}
+    THIS IS THE NEW CODE YOU'RE ADDING
+    It renders the picker snippet and passes in the
+    variables it needs.
+  {%- endcomment -%}
+  {%- unless product.has_only_default_variant -%}
+    {% render 'product-variant-picker',
+      product: product,
+      block: block,
+      product_form_id: product_form_id
+    %}
+  {%- endunless -%}
+
+  <div class="button-group">
+    <button type="submit" name="add" class="add-to-cart-button">ADD TO CART</button>
+    <button type="submit" name="buy_now" class="buy-it-now-button">BUY IT NOW</button>
+  </div>
+{% endform %}
+
+      {% comment %} {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
         <div class="button-group">
           <button type="submit" name="add" class="add-to-cart-button">ADD TO CART</button>
           <button type="submit" name="buy_now" class="buy-it-now-button">BUY IT NOW</button>
         </div>
-      {% endform %}
+      {% endform %} {% endcomment %}
     </div>
   </div>
 
