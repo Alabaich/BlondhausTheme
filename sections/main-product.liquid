@@ -338,10 +338,21 @@
 {%- assign full_product_object = product -%}
 
 {%- comment -%}
+  START: CORRECTED FORM SECTION
+{%- endcomment -%}
+{%- assign full_product_object = product -%}
+
+{%- comment -%}
   This <product-form> is the custom element your JS attaches to.
   It MUST WRAP the form, variant picker, and buttons.
+  
+  START: ADDED data-section-id
+  This is critical for product-form.js to find the correct ProductJson.
 {%- endcomment -%}
-<product-form class="product-form">
+<product-form class="product-form" data-section-id="{{ section.id }}">
+  {%- comment -%}
+    END: ADDED data-section-id
+  {%- endcomment -%}
   
   {%- comment -%}
     The actual <form> tag goes INSIDE the <product-form> wrapper.
