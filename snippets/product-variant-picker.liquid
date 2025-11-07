@@ -3,44 +3,30 @@
 
   Accepts:
   - product: {Object} product object.
-  - product_form_id: {String} Id of the product form.
-  - custom_picker_type: {String} 'button', 'dropdown', or 'swatch'
-  - custom_swatch_shape: {String} 'circle', 'square', or 'none'
-
+  - block: {Object} passing the block information.
+  - product_form_id: {String} Id of the product form to which the variant picker is associated.
   Usage:
-  {% render 'product-variant-picker',
-      product: product,
-      product_form_id: product_form_id,
-      custom_picker_type: 'button',
-      custom_swatch_shape: 'circle'
-  %}
+  {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
+    {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
-        
-        comment
-          START: MODIFIED
-          We now use the 'custom_picker_type' variable passed in,
-          instead of 'block.settings.picker_type'
-        endcomment
-        assign picker_type = custom_picker_type | default: 'dropdown'
-        assign swatch_shape = custom_swatch_shape | default: 'circle'
+        assign picker_type = block.settings.picker_type
 
-        if swatch_count > 0 and swatch_shape != 'none'
-          if picker_type == 'dropdown'
+        if swatch_count > 0 and block.settings.swatch_shape != 'none'
+          if block.settings.picker_type == 'dropdown'
             assign picker_type = 'swatch_dropdown'
           else
             assign picker_type = 'swatch'
           endif
         endif
       -%}
-
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
@@ -52,8 +38,8 @@
           {% render 'product-variant-options',
             product: product,
             option: option,
-            picker_type: picker_type,
-            swatch_shape: swatch_shape
+            block: block,
+            picker_type: picker_type
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
@@ -62,8 +48,8 @@
           {% render 'product-variant-options',
             product: product,
             option: option,
-            picker_type: picker_type,
-            product_form_id: product_form_id
+            block: block,
+            picker_type: picker_type
           %}
         </fieldset>
       {%- else -%}
@@ -77,7 +63,7 @@
                 data-selected-value
                 class="dropdown-swatch"
               >
-                {% render 'swatch', swatch: option.selected_value.swatch, shape: swatch_shape %}
+                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
               </span>
             {%- endif -%}
             <select
@@ -89,8 +75,8 @@
               {% render 'product-variant-options',
                 product: product,
                 option: option,
-                picker_type: picker_type,
-                swatch_shape: swatch_shape
+                block: block,
+                picker_type: picker_type
               %}
             </select>
             <span class="svg-wrapper">
