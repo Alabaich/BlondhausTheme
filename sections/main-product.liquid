@@ -1,10 +1,11 @@
-assign product_media = product.media | default: product.featured_media
+{%- liquid
+  assign product_media = product.media | default: product.featured_media
   assign short_description = product.description | strip_html | truncate: 200
   assign is_long_description = false
   if product.description.size > 200
     assign is_long_description = true
   endif
-%}
+-%}
 
 <style>
   .main-product-page {
@@ -81,107 +82,10 @@ assign product_media = product.media | default: product.featured_media
     flex-direction: column;
     gap: 20px;
   }
-  
-  /* Basic styling for variant pickers - you will need to add theme styles */
-  .product-form__input {
-    margin-bottom: 15px;
-  }
-  .form__label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-    text-transform: uppercase;
-  }
-  .select {
-    position: relative;
-    display: block;
-  }
-  .select__select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    appearance: none;
-    -webkit-appearance: none;
-    font-size: 1em;
-  }
-  .select .svg-wrapper {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    width: 12px;
-    height: 12px;
-  }
-   .product-form__input--pill {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-   }
-  .product-form__input--pill legend {
-     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-    text-transform: uppercase;
-  }
-   .product-form__input--pill fieldset {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-  .product-form__input--pill input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  .product-form__input--pill label {
-    padding: 8px 15px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9em;
-  }
-  .product-form__input--pill input[type="radio"]:checked + label {
-    background-color: black;
-    color: white;
-    border-color: black;
-  }
-  .product-form__input--pill input[type="radio"].disabled + label {
-    opacity: 0.6;
-    background-color: #f0f0f0;
-    cursor: not-allowed;
-    border-color: #f0f0f0;
-  }
-   .product-form__input--pill input[type="radio"].disabled + label::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    height: 1px;
-    background: #999;
-    transform: rotate(-10deg);
-  }
-  .product-form__input--pill label {
-    position: relative;
-  }
-
-
-  /* Original styles */
   .button-group {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 20px; /* Added margin for spacing */
   }
   .add-to-cart-button,
   .buy-it-now-button {
@@ -360,7 +264,7 @@ assign product_media = product.media | default: product.featured_media
   }
 
   @media (max-width: 768px) {
-    .product-grid {
+  .product-grid {
       grid-template-columns: 1fr;
       gap: 40px;
     }
@@ -418,7 +322,7 @@ assign product_media = product.media | default: product.featured_media
         {% endif %}
       </div>
 
-      {%- comment -%}
+       {%- comment -%}
         START: REPLACED FORM SECTION
         We define the variables needed for the product variant picker
       {%- endcomment -%}
@@ -466,6 +370,18 @@ assign product_media = product.media | default: product.featured_media
       {%- comment -%}
         END: REPLACED FORM SECTION
       {%- endcomment -%}
+
+      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
+      {% comment %} {% form 'product', product, class: 'product-form' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+        <div class="button-group">
+          <button type="submit" name="add" class="add-to-cart-button">ADD TO CART</button>
+          <button type="submit" name="buy_now" class="buy-it-now-button">BUY IT NOW</button>
+        </div>
+      {% endform %} {% endcomment %}
     </div>
   </div>
 
@@ -532,17 +448,103 @@ assign product_media = product.media | default: product.featured_media
   </div>
 </div>
 
-{%- comment -%}
-  REMOVED: Your original custom script block was here.
-  It is now deleted to prevent conflicts with the theme's 'global.js'
-  and 'product-form.js' files, which will handle the gallery,
-  accordions, and variant selection.
-{%- endcomment -%}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainImage = document.getElementById('main-product-image');
+    const thumbnails = document.querySelectorAll('.thumbnail-item');
+    const fullscreenOverlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImage = document.getElementById('fullscreen-image');
+    const closeButton = document.querySelector('.fullscreen-close');
+    const prevButton = document.querySelector('.fullscreen-nav-button.prev');
+    const nextButton = document.querySelector('.fullscreen-nav-button.next');
+    const readMoreLink = document.querySelector('.read-more-link');
+    let currentIndex = 0;
 
-{%- comment -%}
-  ADDED: Theme JavaScript files.
-  These power the <variant-selects> tag and all other
-  interactive components like the gallery and accordions.
-{%- endcomment -%}
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    const allImages = Array.from(thumbnails).map((thumb) => thumb.getAttribute('data-full-image-url'));
+
+    function openFullscreen() {
+      const currentMainImageUrl = mainImage.src;
+
+      currentIndex = allImages.findIndex((url) => currentMainImageUrl.includes(url));
+
+      if (currentIndex === -1) currentIndex = 0;
+
+      fullscreenImage.src = allImages[currentIndex];
+      fullscreenOverlay.classList.add('active');
+    }
+
+    function closeFullscreen() {
+      fullscreenOverlay.classList.remove('active');
+    }
+
+    function updateFullscreenImage(index) {
+      if (index >= 0 && index < allImages.length) {
+        fullscreenImage.src = allImages[index];
+        currentIndex = index;
+      }
+    }
+
+    function scrollToAccordionItem(targetId) {
+      const accordionHeader = document.querySelector(`.accordion-header[data-target="${targetId}"]`);
+      if (accordionHeader) {
+        const content = document.getElementById(targetId);
+        const iconContainer = accordionHeader.querySelector('.accordion-icon');
+
+        content.style.maxHeight = content.scrollHeight + 'px';
+        iconContainer.classList.add('rotated');
+
+        accordionHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    if (mainImage && thumbnails.length > 0) {
+      thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', function () {
+          const newImageUrl = this.getAttribute('data-full-image-url');
+          mainImage.src = newImageUrl;
+          currentIndex = index;
+        });
+      });
+
+      mainImage.addEventListener('click', openFullscreen);
+      closeButton.addEventListener('click', closeFullscreen);
+
+      prevButton.addEventListener('click', () => {
+        updateFullscreenImage((currentIndex - 1 + allImages.length) % allImages.length);
+      });
+
+      nextButton.addEventListener('click', () => {
+        updateFullscreenImage((currentIndex + 1) % allImages.length);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+          closeFullscreen();
+        }
+      });
+    }
+
+    if (readMoreLink) {
+      readMoreLink.addEventListener('click', function () {
+        scrollToAccordionItem(this.getAttribute('data-target'));
+      });
+    }
+
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+    accordionHeaders.forEach((header) => {
+      header.addEventListener('click', () => {
+        const content = document.getElementById(header.dataset.target);
+        const iconContainer = header.querySelector('.accordion-icon');
+
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          iconContainer.classList.remove('rotated');
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          iconContainer.classList.add('rotated');
+        }
+      });
+    });
+  });
+</script>
