@@ -322,75 +322,60 @@
         {% endif %}
       </div>
 
+
+
+
+      
 {%- comment -%}
   START: CORRECTED FORM SECTION
 {%- endcomment -%}
-{%- comment -%}
-  CUSTOMIZE PICKER STYLE HERE:
-  This is now just for passing to your picker snippet.
-  
-  START: Renamed 'block' to 'mock_block' to avoid scope collision
-{%- endcomment -%}
-{%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}
-{%- assign mock_block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}
-{%- comment -%}
-  END: Renamed 'block' to 'mock_block'
-{%- endcomment -%}
-
+{%- assign product_form_id = 'main-product-form-' | append: section.id -%}
 {%- assign full_product_object = product -%}
 
 {%- comment -%}
-  This <product-form> is the custom element your JS attaches to.
-  It MUST WRAP the form, variant picker, and buttons.
-  
-  START: ADDED data-section-id
-  This is critical for product-form.js to find the correct ProductJson.
+  START: DEFINE SETTINGS
+  We define our picker type and swatch shape here.
 {%- endcomment -%}
+{%- assign custom_picker_type = 'button' -%}
+{%- assign custom_swatch_shape = 'circle' -%}
+{%- comment -%}
+  END: DEFINE SETTINGS
+{%- endcomment -%}
+
+
 <product-form class="product-form" data-section-id="{{ section.id }}">
-  {%- comment -%}
-    END: ADDED data-section-id
-  {%- endcomment -%}
-  
-  {%- comment -%}
-    The actual <form> tag goes INSIDE the <product-form> wrapper.
-  {%- endcomment -%}
   {% form 'product', product, class: 'product-form-inner', id: product_form_id, novalidate: 'novalidate' %}
     
     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
 
-    {%- comment -%}
-      START: ADDED PRODUCT JSON
-      This script tag is REQUIRED by product-form.js
-      to populate the variant options.
-    {%- endcomment -%}
     <script type="application/json" id="ProductJson-{{ section.id }}">
       {{ product | json }}
     </script>
-    {%- comment -%}
-      END: ADDED PRODUCT JSON
-    {%- endcomment -%}
 
     {%- comment -%}
       NOW, we render the variant picker INSIDE the <product-form>
-      and <form> tags. This is what the JS expects.
+      and <form> tags.
     {%- endcomment -%}
     {%- unless product.has_only_default_variant -%}
+      {%- comment -%}
+        START: PASSING SETTINGS DIRECTLY
+        We pass our custom variables directly to the snippet
+        to avoid any 'block' variable scope issues.
+      {%- endcomment -%}
       {% render 'product-variant-picker',
         product: full_product_object,
-        block: mock_block,
-        product_form_id: product_form_id
+        product_form_id: product_form_id,
+        custom_picker_type: custom_picker_type,
+        custom_swatch_shape: custom_swatch_shape
       %}
     {%- endunless -%}
 
     {%- comment -%}
       REPLACED 'buy-buttons' snippet.
-      We manually add the button and error-message components here
-      so we don't get a nested, broken <product-form> tag.
     {%- endcomment -%}
     <div>
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <span class="svg-wrapper">
-          {%- comment -%} You can inline your error icon SVG here {%- endcomment -%}
           <svg class="icon icon-error" viewBox="0 0 13 13"><circle cx="6.5" cy="6.5" r="5.5" stroke="#fff" stroke-width="2"></circle><circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width=".7"></circle><path fill="#fff" d="m5.874 3.528.1 4.044h1.053l.1-4.044zm.627 6.133c.38 0 .68-.288.68-.656s-.3-.656-.68-.656-.681.288-.681.656.3.656.68.656"></path><path fill="#fff" stroke="#EB001B" stroke-width=".7" d="M5.874 3.178h-.359l.01.359.1 4.044.008.341h1.736l.008-.341.1-4.044.01-.359H5.873Zm.627 6.833c.56 0 1.03-.432 1.03-1.006s-.47-1.006-1.03-1.006-1.031.432-1.031 1.006.47 1.006 1.03 1.006Z"></path></svg>
         </span>
         <span class="product-form__error-message"></span>
@@ -418,10 +403,6 @@
 {%- endcomment -%}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-
-
-
 
 
       {% comment %} {% form 'product', product, class: 'product-form' %}
