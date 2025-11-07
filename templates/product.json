@@ -16,6 +16,12 @@
           "type": "title",
           "settings": {}
         },
+        "sku_gCRDHg": {
+          "type": "sku",
+          "settings": {
+            "text_style": "body"
+          }
+        },
         "price_XiYtgc": {
           "type": "price",
           "settings": {}
@@ -37,9 +43,13 @@
       },
       "block_order": [
         "title_WPnYgj",
+        "sku_gCRDHg",
         "price_XiYtgc",
         "variant_picker_Fey9tw",
         "buy_buttons_aUh9qk"
+      ],
+      "custom_css": [
+        ".product__title{padding-top:50px;}"
       ],
       "settings": {
         "enable_sticky_info": true,
