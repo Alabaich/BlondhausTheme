@@ -322,6 +322,9 @@
         {% endif %}
       </div>
 
+      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
       {%- comment -%}
   We need to define a form ID and a "mock" block object
   because the 'product-variant-picker' snippet expects them.
