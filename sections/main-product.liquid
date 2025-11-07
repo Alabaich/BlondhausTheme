@@ -322,10 +322,17 @@
         {% endif %}
       </div>
 
+
+
 {%- comment -%}
   START: CORRECTED FORM SECTION
 {%- endcomment -%}
 
+{%- comment -%}
+  START: RE-ADDED VARIABLE DEFINITIONS
+  These were accidentally deleted. They are required
+  for the product-variant-picker snippet to work.
+{%- endcomment -%}
 {%- assign product_form_id = 'main-product-form-' | append: section.id -%}
 
 {%- comment -%}
@@ -334,12 +341,10 @@
 {%- endcomment -%}
 {%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}
 {%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}
-
-{%- assign full_product_object = product -%}
-
 {%- comment -%}
-  START: CORRECTED FORM SECTION
+  END: RE-ADDED VARIABLE DEFINITIONS
 {%- endcomment -%}
+
 {%- assign full_product_object = product -%}
 
 {%- comment -%}
@@ -421,6 +426,14 @@
 {%- endcomment -%}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+
+
+
+
+
+
+
       {% comment %} {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
