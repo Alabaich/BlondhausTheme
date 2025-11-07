@@ -322,56 +322,82 @@
         {% endif %}
       </div>
 
-       {%- comment -%}
-        START: REPLACED FORM SECTION
-        We define the variables needed for the product variant picker
-      {%- endcomment -%}
-      {%- assign product_form_id = 'main-product-form' -%}
+{%- comment -%}
+  START: CORRECTED FORM SECTION
+{%- endcomment -%}
 
-      {%- comment -%}
-        CUSTOMIZE PICKER STYLE HERE:
-        - 'picker_type': 'button', 'dropdown', or 'swatch'
-        - 'swatch_shape': 'circle', 'square', or 'none'
-      {%- endcomment -%}
-      {%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}
-      {%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}
+{%- assign product_form_id = 'main-product-form-' | append: section.id -%}
 
-      {%- comment -%}
-        We capture the full product object to pass into the form,
-        fixing the Liquid scope issue.
-      {%- endcomment -%}
-      {%- assign full_product_object = product -%}
+{%- comment -%}
+  CUSTOMIZE PICKER STYLE HERE:
+  This is now just for passing to your picker snippet.
+{%- endcomment -%}
+{%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}
+{%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}
 
-      {%- comment -%}
-        We add the id: product_form_id to the form tag
-      {%- endcomment -%}
-      {% form 'product', product, class: 'product-form', id: product_form_id %}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+{%- assign full_product_object = product -%}
 
-        {%- comment -%}
-          This renders the variant picker snippet, passing in
-          the *full* product object.
-        {%- endcomment -%}
-        {%- unless product.has_only_default_variant -%}
-          {% render 'product-variant-picker',
-            product: full_product_object,
-            block: block,
-            product_form_id: product_form_id
-          %}
-        {%- endunless -%}
+{%- comment -%}
+  This <product-form> is the custom element your JS attaches to.
+  It MUST WRAP the form, variant picker, and buttons.
+{%- endcomment -%}
+<product-form class="product-form">
+  
+  {%- comment -%}
+    The actual <form> tag goes INSIDE the <product-form> wrapper.
+  {%- endcomment -%}
+  {% form 'product', product, class: 'product-form-inner', id: product_form_id, novalidate: 'novalidate' %}
+    
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
 
-        {%- comment -%}
-          REPLACED: Hard-coded buttons are replaced with the 'buy-buttons' snippet
-          for theme compatibility.
-        {%- endcomment -%}
-        {% render 'buy-buttons', product: full_product_object, product_form_id: product_form_id %}
+    {%- comment -%}
+      NOW, we render the variant picker INSIDE the <product-form>
+      and <form> tags. This is what the JS expects.
+    {%- endcomment -%}
+    {%- unless product.has_only_default_variant -%}
+      {% render 'product-variant-picker',
+        product: full_product_object,
+        block: block,
+        product_form_id: product_form_id
+      %}
+    {%- endunless -%}
 
-      {% endform %}
-      {%- comment -%}
-        END: REPLACED FORM SECTION
-      {%- endcomment -%}
+    {%- comment -%}
+      REPLACED 'buy-buttons' snippet.
+      We manually add the button and error-message components here
+      so we don't get a nested, broken <product-form> tag.
+    {%- endcomment -%}
+    <div>
+      <div class="product-form__error-message-wrapper" role="alert" hidden>
+        <span class="svg-wrapper">
+          {%- comment -%} You can inline your error icon SVG here {%- endcomment -%}
+          <svg class="icon icon-error" viewBox="0 0 13 13"><circle cx="6.5" cy="6.5" r="5.5" stroke="#fff" stroke-width="2"></circle><circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width=".7"></circle><path fill="#fff" d="m5.874 3.528.1 4.044h1.053l.1-4.044zm.627 6.133c.38 0 .68-.288.68-.656s-.3-.656-.68-.656-.681.288-.681.656.3.656.68.656"></path><path fill="#fff" stroke="#EB001B" stroke-width=".7" d="M5.874 3.178h-.359l.01.359.1 4.044.008.341h1.736l.008-.341.1-4.044.01-.359H5.873Zm.627 6.833c.56 0 1.03-.432 1.03-1.006s-.47-1.006-1.03-1.006-1.031.432-1.031 1.006.47 1.006 1.03 1.006Z"></path></svg>
+        </span>
+        <span class="product-form__error-message"></span>
+      </div>
 
-      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+      <div class="product-form__buttons">
+        <button
+          type="submit"
+          name="add"
+          class="product-form__submit button button--full-width button--primary"
+        >
+          <span>Add to cart</span>
+          <div class="loading__spinner hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66"><circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle></svg>
+          </div>
+        </button>
+      </div>
+    </div>
+
+  {% endform %}
+</product-form>
+
+{%- comment -%}
+  END: CORRECTED FORM SECTION
+{%- endcomment -%}
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
       {% comment %} {% form 'product', product, class: 'product-form' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
