@@ -346,6 +346,7 @@
 {%- endcomment -%}
 **{%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}**
 **{%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}**
+{%- assign full_product_object = product -%}
 <pre style="background: #f0f0f0; padding: 10px; border: 1px solid #ccc; font-family: monospace;">
     {%- for option in product.options_with_values -%}
       Option Name: {{ option.name }}
@@ -362,13 +363,13 @@
     It renders the picker snippet and passes in the
     variables it needs.
   {%- endcomment -%}
-  {%- unless product.has_only_default_variant -%}
-    {% render 'product-variant-picker',
-      product: product,
-      block: block,
-      product_form_id: product_form_id
-    %}
-  {%- endunless -%}
+{%- unless product.has_only_default_variant -%}
+  {% render 'product-variant-picker',
+    product: full_product_object,  <-- HERE IS THE FIX
+    block: block,
+    product_form_id: product_form_id
+  %}
+{%- endunless -%}
 
   <div class="button-group">
     <button type="submit" name="add" class="add-to-cart-button">ADD TO CART</button>
