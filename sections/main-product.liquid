@@ -322,27 +322,19 @@
         {% endif %}
       </div>
 
-
-
 {%- comment -%}
   START: CORRECTED FORM SECTION
 {%- endcomment -%}
-
-{%- comment -%}
-  START: RE-ADDED VARIABLE DEFINITIONS
-  These were accidentally deleted. They are required
-  for the product-variant-picker snippet to work.
-{%- endcomment -%}
-{%- assign product_form_id = 'main-product-form-' | append: section.id -%}
-
 {%- comment -%}
   CUSTOMIZE PICKER STYLE HERE:
   This is now just for passing to your picker snippet.
+  
+  START: Renamed 'block' to 'mock_block' to avoid scope collision
 {%- endcomment -%}
 {%- assign assign_settings = '{"picker_type": "button", "swatch_shape": "circle"}' -%}
-{%- assign block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}
+{%- assign mock_block = '{ "settings": ' | append: assign_settings | append: ' }' | parse_json -%}
 {%- comment -%}
-  END: RE-ADDED VARIABLE DEFINITIONS
+  END: Renamed 'block' to 'mock_block'
 {%- endcomment -%}
 
 {%- assign full_product_object = product -%}
@@ -385,7 +377,7 @@
     {%- unless product.has_only_default_variant -%}
       {% render 'product-variant-picker',
         product: full_product_object,
-        block: block,
+        block: mock_block,
         product_form_id: product_form_id
       %}
     {%- endunless -%}
@@ -426,8 +418,6 @@
 {%- endcomment -%}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-
 
 
 
