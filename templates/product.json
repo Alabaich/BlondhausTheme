@@ -11,6 +11,18 @@
   "sections": {
     "main": {
       "type": "main-product",
+      "blocks": {
+        "variant_picker_Fey9tw": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "square"
+          }
+        }
+      },
+      "block_order": [
+        "variant_picker_Fey9tw"
+      ],
       "settings": {}
     },
     "image-with-text": {
