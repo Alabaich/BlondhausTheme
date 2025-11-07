@@ -4,20 +4,20 @@
   Accepts:
   - product: {Object} product object.
   - option: {Object} current product_option object.
-  - block: {Object} block object.
   - picker_type: {String} type of picker to dispay
-
-
-  Usage:
-  {% render 'product-variant-options',
-    product: product,
-    option: option,
-    block: block
-    picker_type: picker_type
-  %}
+  - product_form_id: {String} (Optional)
+  - swatch_shape: {String} (Optional)
 {% endcomment %}
+
 {%- liquid
-  assign product_form_id = 'product-form-' | append: section.id
+  comment
+    START: MODIFIED
+    We now use the 'product_form_id' passed in, or default
+    to the old logic if it's missing.
+  endcomment
+  if product_form_id == blank
+    assign product_form_id = 'product-form-' | append: section.id
+  endif
 -%}
 
 {%- for value in option.values -%}
@@ -72,7 +72,7 @@
       product_form_id: product_form_id,
       checked: value.selected,
       visually_disabled: option_disabled,
-      shape: block.settings.swatch_shape,
+      shape: swatch_shape,
       help_text: help_text,
       additional_props: input_dataset
     %}
